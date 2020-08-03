@@ -1,23 +1,17 @@
-import Head from 'next/head';
 import Layout from '../components/Layout';
 import {initializeApollo} from '../lib/apollo'
 import gql from 'graphql-tag';
 
-const Home = ({ query }) => {
-  console.log(query)
+const Home = ({ institutos }) => {
+  console.log(institutos)
   return (
     <Layout>
-      <Head>
-        <title>Notas USP</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
-        <h1>Notas USP</h1>
-
-        <div>
-
-        </div>
+        {institutos?.map((instituto => (
+          <div key={instituto.sigla}>
+            <h2>{instituto.sigla}</h2>
+          </div>
+        )))}
       </main>
     </Layout>
   );
@@ -25,7 +19,7 @@ const Home = ({ query }) => {
 
 const query = gql`
   {
-    intituto {
+    institutos {
       sigla
     }
   }
@@ -36,11 +30,11 @@ export const getStaticProps = async () => {
 
   await apolloClient.query({ query })
 
-  const data = apolloClient.cache.extract()
+  const data = apolloClient.cache.extract().ROOT_QUERY
 
   return {
     props: {
-      query: data
+      institutos: data.institutos
     }
   }
 }

@@ -7,7 +7,7 @@ let apolloClient
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    uri: 'server:1337/graphql',
+    uri: 'http://server:1337/graphql',
     cache: new InMemoryCache(),
   })
 }
