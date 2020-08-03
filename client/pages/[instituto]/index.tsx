@@ -23,7 +23,7 @@ const pathsQuery = gql`
 `;
 
 const queryData = gql`
-  query Institutos($sigla: String!) {
+  query Instituto($sigla: String!) {
     institutos(where: { sigla: $sigla }) {
       nome
     }
