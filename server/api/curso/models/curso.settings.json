@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cursos",
+  "info": {
+    "name": "Curso"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "instituto": {
+      "model": "instituto",
+      "via": "cursos"
+    }
+  }
+}

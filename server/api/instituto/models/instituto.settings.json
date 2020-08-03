@@ -18,6 +18,10 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "cursos": {
+      "via": "instituto",
+      "collection": "curso"
     }
   }
 }
