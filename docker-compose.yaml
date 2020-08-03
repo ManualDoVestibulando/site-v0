@@ -15,10 +15,10 @@ services:
     image: strapi/strapi
     environment:
       NODE_VERSION: 12
-      DATABASE_CLIENT: postgres
+      DATABASE_CLIENT: mongo
       DATABASE_HOST: db
       DATABASE_NAME: notas
-      DATABASE_PORT: 5432
+      DATABASE_PORT: 27017
       DATABASE_USERNAME: ${DB_USERNAME}
       DATABASE_PASSWORD: ${DB_PASSWORD}
     volumes:
@@ -29,12 +29,12 @@ services:
       - db
 
   db:
-    image: postgres
-    volumes:
-      - ./data:/var/lib/postgresql/data
+    image: mongo
     environment:
-        POSTGRES_DB: notas
-        POSTGRES_USER: ${DB_USERNAME}
-        POSTGRES_PASSWORD: ${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: notas
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data/db:/data/db
     ports:
-      - '5432:5432'
+      - '27017:27017'
