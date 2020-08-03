@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  client:
+    image: node:12
+    volumes:
+      - ./client:/app
+    working_dir: /app
+    command: bash -c "[ -f 'node_modules' ] || npm i && npm run dev"
+    ports:
+      - '3000:3000'
+    depends_on:
+      - server
+  server:
+    image: strapi/strapi
+    environment:
+      NODE_VERSION: 12
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: db
+      DATABASE_NAME: notas
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: ${DB_USERNAME}
+      DATABASE_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./server:/srv/app
+    ports:
+      - '1337:1337'
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+        POSTGRES_DB: notas
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '5432:5432'
