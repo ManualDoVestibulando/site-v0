@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "institutos",
+  "info": {
+    "name": "Instituto"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "sigla": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
