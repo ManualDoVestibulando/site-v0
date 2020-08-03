@@ -23,8 +23,8 @@ const pathsQuery = gql`
 `;
 
 const queryData = gql`
-  {
-    institutos(where: { sigla: "poli" }) {
+  query Institutos($sigla: String!) {
+    institutos(where: { sigla: $sigla }) {
       nome
     }
   }
@@ -32,8 +32,8 @@ const queryData = gql`
 
 export const getStaticProps = async ({ params }) => {
   const apolloClient = initializeApollo();
-  const sigla = params.instituto // É o parametro do request
-  console.log(sigla)
+  const sigla = params.instituto; // É o parametro do request q ficou chamdo de request
+  console.log(sigla);
 
   await apolloClient.query({
     query: queryData,
