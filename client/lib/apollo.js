@@ -1,8 +1,27 @@
-import { withApollo } from "next-apollo"
-import { ApolloClient } from '@apollo/client';
+// Based in: https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js
 
-const client = new ApolloClient({
-  uri: 'server:1337/graphql',
-});
+import { ApolloClient, InMemoryCache } from '@apollo/client'
 
-export default withApollo(client);
+let apolloClient
+
+function createApolloClient() {
+  return new ApolloClient({
+    ssrMode: typeof window === 'undefined',
+    uri: 'server:1337/graphql',
+    cache: new InMemoryCache(),
+  })
+}
+
+// Singleton
+export function initializeApollo(initialState = null) {
+  const _apolloClient = apolloClient ?? createApolloClient()
+
+  if (initialState) {
+    _apolloClient.cache.restore(initialState)
+  }
+
+  if (typeof window === 'undefined') return _apolloClient
+  if (!apolloClient) apolloClient = _apolloClient
+
+  return _apolloClient
+}
