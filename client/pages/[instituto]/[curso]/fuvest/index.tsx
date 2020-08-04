@@ -1,18 +1,20 @@
 import React from 'react';
-import { initializeApollo } from '../../../lib/apollo';
 import gql from 'graphql-tag';
-import Layout from '../../../components/Layout';
-import CursoRepository from '../../../lib/cursoRepository';
-import institutoRepository from '../../../lib/institutoRepository';
+import Layout from '../../../../components/Layout';
+import CursoRepository from '../../../../lib/cursoRepository';
+import institutoRepository from '../../../../lib/institutoRepository';
 
 const Curso = ({ curso }) => {
   console.log(curso);
   return (
     <Layout>
-      <main>
-        <h2> {curso.instituto.nome} </h2>
-        <h3> {curso.nome} </h3>
-      </main>
+      <h2> {curso.instituto.nome} </h2>
+      <h3> {curso.nome} </h3>
+      <h4>Fuvest</h4>
+      <article>
+          <h1>Notas</h1>
+            
+      </article>
     </Layout>
   );
 };
@@ -30,9 +32,7 @@ const pathsQuery = gql`
 
 const queryData = gql`
   query Curso($sigla: String!, $curso: String!) {
-    cursos(
-      where: { nome: $curso, instituto: { sigla: $sigla } }
-    ) {
+    cursos(where: { nome: $curso, instituto: { sigla: $sigla } }) {
       nome
       instituto {
         nome
@@ -43,7 +43,10 @@ const queryData = gql`
 `;
 
 export const getStaticProps = async ({ params }) => {
-  const curso = await CursoRepository.findBySlug(params.curso, params.instituto)
+  const curso = await CursoRepository.findBySlug(
+    params.curso,
+    params.instituto
+  );
   return {
     props: {
       curso,
@@ -52,12 +55,12 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  let cursos = await CursoRepository.getAll()
-  cursos = CursoRepository.addSlug(cursos)
-  cursos = cursos.map(curso => ({
+  let cursos = await CursoRepository.getAll();
+  cursos = CursoRepository.addSlug(cursos);
+  cursos = cursos.map((curso) => ({
     ...curso,
-    instituto: institutoRepository.addSlug([curso.instituto])[0]
-  }))
+    instituto: institutoRepository.addSlug([curso.instituto])[0],
+  }));
 
   return {
     paths: cursos.map((curso) => ({
