@@ -17,12 +17,11 @@
       "model": "instituto"
     },
     "notas": {
-      "via": "curso",
-      "collection": "nota"
+      "collection": "nota",
+      "via": "curso"
     },
     "slug_": {
-      "type": "string",
-      "regex": "$^"
+      "type": "string"
     }
   }
 }

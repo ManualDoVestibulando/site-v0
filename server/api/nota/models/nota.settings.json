@@ -30,8 +30,8 @@
       "unique": true
     },
     "curso": {
-      "model": "curso",
-      "via": "notas"
+      "via": "notas",
+      "model": "curso"
     },
     "classificacao": {
       "type": "integer"

@@ -24,8 +24,7 @@
       "via": "instituto"
     },
     "slug_": {
-      "type": "string",
-      "regex": "$^"
+      "type": "string"
     }
   }
 }
