@@ -1,4 +1,5 @@
 import React from 'react';
+import DisChart from '../../../../components/Chart';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';;
 
@@ -11,6 +12,7 @@ const Curso = ({ curso }) => {
       <h4>Fuvest</h4>
       <article>
         <h1>Notas</h1>
+        {/* <DisChart/> */}
         <table>
             <thead>
                 <tr>

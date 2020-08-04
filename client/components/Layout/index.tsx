@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
+import { Container } from 'react-bootstrap';
+import MainNavbar from '../MainNavbar';
 
 const Layout = ({ children }) => (
   <>
@@ -7,8 +9,11 @@ const Layout = ({ children }) => (
       <title>Notas USP</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <h1>Notas USP</h1>
-    {children}
+    <MainNavbar />
+    <Container>
+      <h1>Notas USP</h1>
+      {children}
+    </Container>
   </>
 );
 
