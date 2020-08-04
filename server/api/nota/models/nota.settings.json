@@ -44,6 +44,10 @@
         "PPI"
       ],
       "required": true
+    },
+    "total_": {
+      "type": "string",
+      "regex": "$^"
     }
   }
 }

@@ -19,6 +19,10 @@
     "notas": {
       "via": "curso",
       "collection": "nota"
+    },
+    "slug_": {
+      "type": "string",
+      "regex": "$^"
     }
   }
 }
