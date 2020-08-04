@@ -20,8 +20,11 @@
       "unique": true
     },
     "cursos": {
-      "via": "instituto",
-      "collection": "curso"
+      "collection": "curso",
+      "via": "instituto"
+    },
+    "slug_": {
+      "type": "string"
     }
   }
 }

@@ -13,8 +13,8 @@
       "type": "string"
     },
     "instituto": {
-      "model": "instituto",
-      "via": "cursos"
+      "via": "cursos",
+      "model": "instituto"
     },
     "notas": {
       "via": "curso",
