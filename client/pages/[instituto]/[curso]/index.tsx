@@ -2,6 +2,8 @@ import React from 'react';
 import { initializeApollo } from '../../../lib/apollo';
 import gql from 'graphql-tag';
 import Layout from '../../../components/Layout';
+import CursoRepository from '../../../lib/cursoRepository';
+import institutoRepository from '../../../lib/institutoRepository';
 
 const Curso = ({ curso }) => {
   console.log(curso);
@@ -41,41 +43,29 @@ const queryData = gql`
 `;
 
 export const getStaticProps = async ({ params }) => {
-  const apolloClient = initializeApollo();
-  const sigla = params.instituto; // É o parametro do request
-  const cursoName = decodeURI(params.curso);
-
-  await apolloClient.query({
-    query: queryData,
-    variables: { sigla, curso: cursoName },
-  });
-
-    const data = apolloClient.cache.extract().ROOT_QUERY;
-    const curso = Object.values(data)[1][0];
-
+  const curso = await CursoRepository.findBySlug(params.curso, params.instituto)
   return {
     props: {
-      curso: curso,
+      curso,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const apolloClient = initializeApollo();
+  let cursos = await CursoRepository.getAll()
+  cursos = CursoRepository.addSlug(cursos)
+  cursos = cursos.map(curso => ({
+    ...curso,
+    instituto: institutoRepository.addSlug([curso.instituto])[0]
+  }))
 
-  await apolloClient.query({ query: pathsQuery });
-
-  const data = apolloClient.cache.extract().ROOT_QUERY;
-  const cursos = data.cursos as Array<{
-    nome: string;
-    instituto: { sigla: string };
-  }>;
+  console.log(cursos[3])
 
   return {
     paths: cursos.map((curso) => ({
       params: {
-        instituto: curso.instituto.sigla,
-        curso: encodeURI(curso.nome),
+        instituto: curso.instituto.slug,
+        curso: curso.slug,
       },
     })),
     fallback: false,

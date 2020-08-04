@@ -2,9 +2,9 @@ import React from 'react';
 import { initializeApollo } from '../../lib/apollo';
 import gql from 'graphql-tag';
 import Layout from '../../components/Layout';
+import InstitutoRepository from '../../lib/institutoRepository'
 
 const Instituto = ({ instituto }) => {
-  console.log(instituto);
   return (
     <Layout>
       <main>
@@ -14,35 +14,10 @@ const Instituto = ({ instituto }) => {
   );
 };
 
-const pathsQuery = gql`
-  {
-    institutos {
-      sigla
-    }
-  }
-`;
-
-const queryData = gql`
-  query Instituto($sigla: String!) {
-    institutos(where: { sigla: $sigla }) {
-      nome
-    }
-  }
-`;
-
 export const getStaticProps = async ({ params }) => {
-  const apolloClient = initializeApollo();
-  const sigla = params.instituto; // É o parametro do request q ficou chamdo de request
-  console.log(sigla);
-
-  await apolloClient.query({
-    query: queryData,
-    variables: { sigla },
-  });
-
-  const data = apolloClient.cache.extract().ROOT_QUERY;
-  const instituto = Object.values(data)[1][0];
-
+  console.log('Start getStaticProps')
+  const instituto = await InstitutoRepository.findBySlug(params.instituto)
+  console.log(instituto)
   return {
     props: {
       instituto,
@@ -51,21 +26,19 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({ query: pathsQuery });
-
-  const data = apolloClient.cache.extract().ROOT_QUERY;
-  const institutos = data.institutos as Array<{ sigla: string }>;
-
-  return {
+  console.log('Start getStaticPaths')
+  let institutos = await InstitutoRepository.getAll()
+  institutos = InstitutoRepository.addSlug(institutos)
+  console.log(institutos)
+  return ({
     paths: institutos.map((instituto) => ({
       params: {
-        instituto: instituto.sigla,
+        instituto: instituto.slug,
       },
     })),
     fallback: false,
-  };
-};
+  });
+}
+
 
 export default Instituto;
