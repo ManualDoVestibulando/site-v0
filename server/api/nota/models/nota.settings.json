@@ -29,11 +29,11 @@
       "required": true,
       "unique": true
     },
-    "curso1": {
+    "curso": {
       "model": "curso",
-      "via": "nota1s"
+      "via": "notas"
     },
-    "classificacao1": {
+    "classificacao": {
       "type": "integer"
     },
     "cota": {
