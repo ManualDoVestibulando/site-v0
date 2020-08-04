@@ -1,8 +1,6 @@
 import React from 'react';
-import { initializeApollo } from '../../lib/apollo';
-import gql from 'graphql-tag';
 import Layout from '../../components/Layout';
-import InstitutoRepository from '../../lib/institutoRepository'
+import axios from '../../lib/axios';
 
 const Instituto = ({ instituto }) => {
   return (
@@ -15,30 +13,54 @@ const Instituto = ({ instituto }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  console.log('Start getStaticProps')
-  const instituto = await InstitutoRepository.findBySlug(params.instituto)
-  console.log(instituto)
+  const query = `
+    query Querry($instituto: String!) {
+      institutos(where: { slug_: $instituto }) {
+        slug_
+        nome
+      }
+    }
+  `;
+
+  const response = await axios.post('/graphql', {
+    query,
+    variables: {
+      instituto: params.instituto
+    }
+  });
+
+  const data = response.data.data;
+
   return {
     props: {
-      instituto,
+      instituto: data.institutos[0],
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  console.log('Start getStaticPaths')
-  let institutos = await InstitutoRepository.getAll()
-  institutos = InstitutoRepository.addSlug(institutos)
-  console.log(institutos)
-  return ({
-    paths: institutos.map((instituto) => ({
+  const query = `
+    {
+      institutos {
+        slug_
+      }
+    }
+  `;
+
+  const response = await axios.post('/graphql', {
+    query,
+  });
+
+  const data = response.data.data;
+
+  return {
+    paths: data.institutos.map((instituto) => ({
       params: {
-        instituto: instituto.slug,
+        instituto: instituto.slug_,
       },
     })),
     fallback: false,
-  });
-}
-
+  };
+};
 
 export default Instituto;

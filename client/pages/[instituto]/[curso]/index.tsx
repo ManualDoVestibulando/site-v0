@@ -1,9 +1,6 @@
 import React from 'react';
-import { initializeApollo } from '../../../lib/apollo';
-import gql from 'graphql-tag';
 import Layout from '../../../components/Layout';
-import CursoRepository from '../../../lib/cursoRepository';
-import institutoRepository from '../../../lib/institutoRepository';
+import axios from '../../../lib/axios';
 
 const Curso = ({ curso }) => {
   console.log(curso);
@@ -18,27 +15,58 @@ const Curso = ({ curso }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const curso = await CursoRepository.findBySlug(params.curso, params.instituto)
+  const query = `
+    query Querry($instituto: String!, $curso: String!) {
+      cursos(where: { slug_: $curso, instituto: {slug_: $instituto} }) {
+        slug_
+        nome
+        instituto {
+          nome
+        }
+      }
+    }
+  `;
+
+  const response = await axios.post('/graphql', {
+    query,
+    variables: {
+      instituto: params.instituto,
+      curso: params.curso,
+    }
+  });
+
+  const data = response.data.data;
+
   return {
     props: {
-      curso,
+      curso: data.cursos[0],
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  let cursos = await CursoRepository.getAll()
-  cursos = CursoRepository.addSlug(cursos)
-  cursos = cursos.map(curso => ({
-    ...curso,
-    instituto: institutoRepository.addSlug([curso.instituto])[0]
-  }))
+  const query = `
+    {
+      cursos {
+        slug_
+        instituto {
+          slug_
+        }
+      }
+    }
+  `;
+
+  const response = await axios.post('/graphql', {
+    query,
+  });
+
+  const data = response.data.data;
 
   return {
-    paths: cursos.map((curso) => ({
+    paths: data.cursos.map((curso) => ({
       params: {
-        instituto: curso.instituto.slug,
-        curso: curso.slug,
+        curso: curso.slug_,
+        instituto: curso.instituto.slug_
       },
     })),
     fallback: false,

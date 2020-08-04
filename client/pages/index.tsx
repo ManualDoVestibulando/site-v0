@@ -1,13 +1,47 @@
+import React from 'react';
 import Layout from '../components/Layout';
-import {initializeApollo} from '../lib/apollo'
-import gql from 'graphql-tag';
+import Search from '../components/Search';
+import axios from '../lib/axios';
 
-const Home = () => (
-    <Layout>
-      <main>
-        <h1>Notas USP</h1>
-      </main>
-    </Layout>
-  )
+const Home = ({ options }) => (
+  <Layout>
+    <main>
+      <Search options={options} />
+    </main>
+  </Layout>
+);
 
-export default Home
+export const getStaticProps = async () => {
+  const query = `
+        query Querry {
+          institutos(sort: "nome") {
+            nome
+            slug_
+            cursos(sort: "nome") {
+              nome
+              slug_
+            }
+          }
+        }
+      `;
+
+  const response = await axios.post('/graphql', {
+    query,
+  });
+
+  const data = response.data.data;
+
+  return {
+    props: {
+      options: data.institutos.map((instituto) => ({
+        label: instituto.nome,
+        options: instituto.cursos.map((curso) => ({
+          value: `/${instituto.slug_}/${curso.slug_}`,
+          label: curso.nome,
+        })),
+      })),
+    },
+  };
+};
+
+export default Home;

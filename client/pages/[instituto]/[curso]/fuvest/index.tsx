@@ -1,12 +1,9 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import Layout from '../../../../components/Layout';
-import CursoRepository from '../../../../lib/cursoRepository';
-import institutoRepository from '../../../../lib/institutoRepository';
+import axios from '../../../../lib/axios';;
 
 const Curso = ({ curso }) => {
-  const notas = curso[`notas({"sort":"classificacao"})`]
-  console.log(notas)
+  console.log(curso)
   return (
     <Layout>
       <h2> {curso.instituto.nome} </h2>
@@ -25,8 +22,8 @@ const Curso = ({ curso }) => {
                 </tr>
             </thead>
             <tbody>
-                {notas.map(nota => (
-                    <tr>
+                {curso.notas.map(nota => (
+                    <tr key={nota.classificacao}>
                         <td>{nota.fase1}</td>
                         <td>{nota.fase2dia1}</td>
                         <td>{nota.fase2dia2}</td>
@@ -42,30 +39,64 @@ const Curso = ({ curso }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const curso = await CursoRepository.findBySlug(
-    params.curso,
-    params.instituto
-  );
+  const query = `
+    query Querry($instituto: String!, $curso: String!) {
+      cursos(where: { slug_: $curso, instituto: {slug_: $instituto} }) {
+        nome
+        instituto {
+          nome
+        }
+        notas(sort: "classificacao"){
+          fase1
+          fase2dia1
+          fase2dia2
+          redacao
+          classificacao
+        }
+      }
+    }
+  `;
+
+  const response = await axios.post('/graphql', {
+    query,
+    variables: {
+      instituto: params.instituto,
+      curso: params.curso,
+    }
+  });
+
+  const data = response.data.data;
+
   return {
     props: {
-      curso,
+      curso: data.cursos[0],
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  let cursos = await CursoRepository.getAll();
-  cursos = CursoRepository.addSlug(cursos);
-  cursos = cursos.map((curso) => ({
-    ...curso,
-    instituto: institutoRepository.addSlug([curso.instituto])[0],
-  }));
+  const query = `
+    {
+      cursos {
+        slug_
+        instituto {
+          slug_
+        }
+      }
+    }
+  `;
+
+  const response = await axios.post('/graphql', {
+    query,
+  });
+
+  const data = response.data.data;
 
   return {
-    paths: cursos.map((curso) => ({
+    paths: data.cursos.map((curso) => ({
       params: {
-        instituto: curso.instituto.slug,
-        curso: curso.slug,
+        curso: curso.slug_,
+        instituto: curso.instituto.slug_
       },
     })),
     fallback: false,
