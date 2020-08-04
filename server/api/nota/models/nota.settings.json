@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notas",
+  "info": {
+    "name": "Nota"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "fase1": {
+      "type": "decimal",
+      "required": true,
+      "unique": true
+    },
+    "fase2dia1": {
+      "type": "decimal",
+      "required": true,
+      "unique": true
+    },
+    "fase2dia2": {
+      "type": "decimal",
+      "required": true,
+      "unique": true
+    },
+    "redacao": {
+      "type": "decimal",
+      "required": true,
+      "unique": true
+    },
+    "curso1": {
+      "model": "curso",
+      "via": "nota1s"
+    },
+    "classificacao1": {
+      "type": "integer"
+    },
+    "cota": {
+      "type": "enumeration",
+      "enum": [
+        "AC",
+        "EP",
+        "PPI"
+      ],
+      "required": true
+    }
+  }
+}
