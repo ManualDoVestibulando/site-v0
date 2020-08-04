@@ -5,42 +5,41 @@ import CursoRepository from '../../../../lib/cursoRepository';
 import institutoRepository from '../../../../lib/institutoRepository';
 
 const Curso = ({ curso }) => {
-  console.log(curso);
+  const notas = curso[`notas({"sort":"classificacao"})`]
+  console.log(notas)
   return (
     <Layout>
       <h2> {curso.instituto.nome} </h2>
       <h3> {curso.nome} </h3>
       <h4>Fuvest</h4>
       <article>
-          <h1>Notas</h1>
-            
+        <h1>Notas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>Primeira fase</td>
+                    <td>Segunda fase - Dia 1</td>
+                    <td>Segunda fase - Dia 2</td>
+                    <td>Redaçaõ</td>
+                    <td>Classificação</td>
+                </tr>
+            </thead>
+            <tbody>
+                {notas.map(nota => (
+                    <tr>
+                        <td>{nota.fase1}</td>
+                        <td>{nota.fase2dia1}</td>
+                        <td>{nota.fase2dia2}</td>
+                        <td>{nota.redacao}</td>
+                        <td>{nota.classificacao}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
       </article>
     </Layout>
   );
 };
-
-const pathsQuery = gql`
-  {
-    cursos {
-      nome
-      instituto {
-        sigla
-      }
-    }
-  }
-`;
-
-const queryData = gql`
-  query Curso($sigla: String!, $curso: String!) {
-    cursos(where: { nome: $curso, instituto: { sigla: $sigla } }) {
-      nome
-      instituto {
-        nome
-        sigla
-      }
-    }
-  }
-`;
 
 export const getStaticProps = async ({ params }) => {
   const curso = await CursoRepository.findBySlug(

@@ -18,6 +18,15 @@ export interface ICurso {
   nome?: string;
   instituto?: IInstituto;
   slug?: string;
+  notas?: INota[]
+}
+
+export interface INota {
+  fase1: number
+  fase2dia1: number
+  fase2dia2: number
+  redacao: number
+  classificacao: number
 }
 
 export const cursoDataQuery = gql`
@@ -27,6 +36,13 @@ export const cursoDataQuery = gql`
       instituto {
         nome
         sigla
+      }
+      notas(sort: "classificacao"){
+        fase1
+        fase2dia1
+        fase2dia2
+        redacao
+        classificacao
       }
     }
   }
@@ -39,7 +55,10 @@ export default {
     await apolloClient.query({ query: cursoSlugQuery });
 
     const data = apolloClient.cache.extract().ROOT_QUERY;
-    return data.cursos as ICurso[];
+    return (data.cursos as Array<any>).map(curso => ({
+      ...curso,
+      batata: curso[`notas({"sort":"classificacao"})`]
+    })) as ICurso[];
   },
   async findBySlug(slugCurso, slugInstituto) {
     const apolloClient = initializeApollo();

@@ -17,31 +17,6 @@ const Curso = ({ curso }) => {
   );
 };
 
-const pathsQuery = gql`
-  {
-    cursos {
-      nome
-      instituto {
-        sigla
-      }
-    }
-  }
-`;
-
-const queryData = gql`
-  query Curso($sigla: String!, $curso: String!) {
-    cursos(
-      where: { nome: $curso, instituto: { sigla: $sigla } }
-    ) {
-      nome
-      instituto {
-        nome
-        sigla
-      }
-    }
-  }
-`;
-
 export const getStaticProps = async ({ params }) => {
   const curso = await CursoRepository.findBySlug(params.curso, params.instituto)
   return {
