@@ -1,7 +1,6 @@
 import React from 'react';
 // import DisChart from '../../../../components/Chart';
 import NotasTable from '../../../../components/NotasTable';
-import TesteTable from '../../../../components/TesteTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';;
 
@@ -47,6 +46,10 @@ export const getStaticProps = async ({ params }) => {
 
   const data = response.data.data;
   const curso = data.cursos[0];
+  //TODO: calcular total direito
+  curso.notas.forEach(nota => {
+    nota.total = nota.fase1*100/90
+  })
 
   return {
     props: {
