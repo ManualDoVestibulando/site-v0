@@ -9,11 +9,12 @@ const Layout = ({ children }) => (
       <title>Notas USP</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <MainNavbar />
-    <Container>
-      <h1>Notas USP</h1>
+    <header>
+      <MainNavbar />
+    </header>
+    <main>
       {children}
-    </Container>
+    </main>
   </>
 );
 

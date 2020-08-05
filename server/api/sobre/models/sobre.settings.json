@@ -1,0 +1,16 @@
+{
+  "kind": "singleType",
+  "collectionName": "sobres",
+  "info": {
+    "name": "sobre"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "descricao": {
+      "type": "richtext"
+    }
+  }
+}
