@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"nome":{"$numberInt":"1"}},"name":"nome_1","background":true},{"v":{"$numberInt":"2"},"unique":true,"key":{"sigla":{"$numberInt":"1"}},"name":"sigla_1","background":true}],"uuid":"dba734aa82a34a35810dd7a4da7e5134","collectionName":"institutos"}
