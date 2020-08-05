@@ -1,18 +1,30 @@
 import React from 'react';
-// import DisChart from '../../../../components/Chart';
+import NotasChart from '../../../../components/NotasChart';
 import NotasTable from '../../../../components/NotasTable';
 import Layout from '../../../../components/Layout';
-import axios from '../../../../lib/axios';;
+import axios from '../../../../lib/axios';
+import * as S from './style';
 
 const Curso = ({ curso }) => {
-  console.log(curso.notas)
+  console.log(curso);
   return (
     <Layout>
-      <h2> {curso.nome} - {curso.instituto.nome}</h2>
-      <article>
-        <h1>Notas</h1>
-        <NotasTable notas={curso.notas}/>
-      </article>
+      <S.Wrapper>
+        <S.WrapperTitle>
+          <S.Title>
+            {curso.nome} - {curso.instituto.sigla}
+          </S.Title>
+        </S.WrapperTitle>
+        <S.NotasWrapper>
+          <S.SubTitle>Notas</S.SubTitle>
+          <S.WrapperChart>
+            <NotasChart />
+          </S.WrapperChart>
+          <S.WrapperTable>
+            <NotasTable notas={curso.notas} />
+          </S.WrapperTable>
+        </S.NotasWrapper>
+      </S.Wrapper>
     </Layout>
   );
 };
@@ -23,7 +35,7 @@ export const getStaticProps = async ({ params }) => {
       cursos(where: { slug_: $curso, instituto: {slug_: $instituto} }) {
         nome
         instituto {
-          nome
+          sigla
         }
         notas(sort: "classificacao"){
           fase1
@@ -41,15 +53,23 @@ export const getStaticProps = async ({ params }) => {
     variables: {
       instituto: params.instituto,
       curso: params.curso,
-    }
+    },
   });
 
   const data = response.data.data;
   const curso = data.cursos[0];
   //TODO: calcular total direito
-  curso.notas.forEach(nota => {
-    nota.total = nota.fase1*100/90
-  })
+  curso.notas.forEach((nota) => {
+    nota.total = (nota.fase1 * 100) / 90;
+  });
+
+  curso.notas.forEach((nota) =>
+    Object.keys(nota).forEach((key) => {
+      try {
+        nota[key] = Number(nota[key].toFixed(2));
+      } catch (_) {}
+    })
+  );
 
   return {
     props: {
@@ -80,7 +100,7 @@ export const getStaticPaths = async () => {
     paths: data.cursos.map((curso) => ({
       params: {
         curso: curso.slug_,
-        instituto: curso.instituto.slug_
+        instituto: curso.instituto.slug_,
       },
     })),
     fallback: false,

@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const WrapperTable = styled.div`
-  max-width: 40em;
-  border-radius: 10px;
-`;
-
 export const Table = styled.div`
   width: 100%;
   display: table;
@@ -13,6 +8,7 @@ export const Table = styled.div`
 export const Thead = styled.div`
   color: white;
   background: red;
+  font-weight: 500;
   display: table-header-group;
 `;
 
@@ -25,33 +21,37 @@ export const Trow = styled.div`
     background: #f002;
   }
 
-  :nth-child(1) {
-    width: 22.5%;
-  }
-  :nth-child(2) {
-    width: 22.5%;
-  }
-  :nth-child(3) {
-    width: 22.5%;
-  }
-  :nth-child(4) {
-    width: 22.5%;
-  }
-  :nth-child(5) {
-    width: 10%;
-  }
+  /* :nth-child(1) {
+    width: 20%;
+  }*/
 `;
 
 export const Tbody = styled.div`
   display: table-row-group;
 
-  ${Trow}:hover{
+  ${Trow}:hover {
     background-color: #f004;
     cursor: pointer;
   }
+
+  ${props => props.show &&`
+    display: none;
+  `}
 `;
 
 export const Tcell = styled.div`
-  padding: 1em 1em;
+  padding: 0.6em 1em;
   display: table-cell;
+`;
+
+export const Tfoot = styled.div`
+  display: table-footer-group;
+  background-color: #f00a;
+  color: white;
+
+  ${Tcell} {
+    :nth-child(even) {
+      background: #f00b;
+    }
+  }
 `;
