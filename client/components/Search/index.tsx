@@ -27,7 +27,7 @@ const Search = ({
 }) => {
   const router = useRouter();
   const handleChange = ({ value, lable }) => {
-    router.push(value);
+    router.push(value + '/fuvest');
   };
   return (
     <Select

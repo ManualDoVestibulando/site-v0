@@ -26,7 +26,7 @@ export default function Sobre({ sobre, equipes }) {
                     loading="lazy"
                     src={'http://localhost:1337' + colaborador.imagem.url}
                   />
-                  <h3>{colaborador.nome}</h3>
+                  <h4>{colaborador.nome}</h4>
                 </S.Colaborador>
               ))}
             </S.Equipes>
