@@ -1,40 +1,18 @@
 import React from 'react';
-import DisChart from '../../../../components/Chart';
+// import DisChart from '../../../../components/Chart';
+import NotasTable from '../../../../components/NotasTable';
+import TesteTable from '../../../../components/TesteTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';;
 
 const Curso = ({ curso }) => {
-  console.log(curso)
+  console.log(curso.notas)
   return (
     <Layout>
-      <h2> {curso.instituto.nome} </h2>
-      <h3> {curso.nome} </h3>
-      <h4>Fuvest</h4>
+      <h2> {curso.nome} - {curso.instituto.nome}</h2>
       <article>
         <h1>Notas</h1>
-        {/* <DisChart/> */}
-        <table>
-            <thead>
-                <tr>
-                    <td>Primeira fase</td>
-                    <td>Segunda fase - Dia 1</td>
-                    <td>Segunda fase - Dia 2</td>
-                    <td>Redaçaõ</td>
-                    <td>Classificação</td>
-                </tr>
-            </thead>
-            <tbody>
-                {curso.notas.map(nota => (
-                    <tr key={nota.classificacao}>
-                        <td>{nota.fase1}</td>
-                        <td>{nota.fase2dia1}</td>
-                        <td>{nota.fase2dia2}</td>
-                        <td>{nota.redacao}</td>
-                        <td>{nota.classificacao}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <NotasTable notas={curso.notas}/>
       </article>
     </Layout>
   );
@@ -68,10 +46,11 @@ export const getStaticProps = async ({ params }) => {
   });
 
   const data = response.data.data;
+  const curso = data.cursos[0];
 
   return {
     props: {
-      curso: data.cursos[0],
+      curso,
     },
   };
 };
