@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import Search from '../../components/Search';
 import axios from '../../lib/axios';
-import * as S from './style';
+import * as S from '../../styles/notas-style';
 
 const Home = ({ options }) => (
   <Layout>

@@ -3,7 +3,7 @@ import NotasChart from '../../../../components/NotasChart';
 import NotasTable from '../../../../components/NotasTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';
-import * as S from './style';
+import * as S from '../../../../styles/fuvest-style';
 
 const Curso = ({ curso, notas }) => {
   return (

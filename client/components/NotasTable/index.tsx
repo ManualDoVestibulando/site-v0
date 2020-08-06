@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTable } from 'react-table';
+import { notasHeaders } from './data';
 import * as S from './style';
-import { notasHeaders } from '../../pages/[instituto]/[curso]/fuvest/data';
 
 function NotasTable({ notas, showBody }: { notas: any; showBody?: boolean }) {
   const columns = React.useMemo(notasHeaders, []);

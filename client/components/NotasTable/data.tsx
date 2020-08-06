@@ -1,5 +1,5 @@
 import React from "react";
-import { arrAvg } from "../../../../utils/array";
+import { arrAvg } from "../../utils/array";
 
 export const notasHeaders = () => [
       {

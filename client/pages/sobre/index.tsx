@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
-import * as S from './style';
+import * as S from '../../styles/sobre-style';
 import axios from '../../lib/axios';
 import showdown from 'showdown';
 
