@@ -17,8 +17,8 @@
       "model": "instituto"
     },
     "notas": {
-      "collection": "nota",
-      "via": "curso"
+      "via": "curso",
+      "collection": "nota"
     },
     "slug_": {
       "type": "string"

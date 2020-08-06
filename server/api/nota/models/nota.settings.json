@@ -12,29 +12,30 @@
     "fase1": {
       "type": "decimal",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "fase2dia1": {
       "type": "decimal",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "fase2dia2": {
       "type": "decimal",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "redacao": {
       "type": "decimal",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "curso": {
-      "via": "notas",
-      "model": "curso"
+      "model": "curso",
+      "via": "notas"
     },
     "classificacao": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "cota": {
       "type": "enumeration",
@@ -44,10 +45,6 @@
         "PPI"
       ],
       "required": true
-    },
-    "total_": {
-      "type": "string",
-      "regex": "$^"
     }
   }
 }
