@@ -48,5 +48,5 @@ export const WrapperTable = styled.div`
 export const WrapperChart = styled.div`
   margin: 0 2em 3em 2em;
   max-width: 30em;
-  max-height: 30em;
+  max-height: 12em;
 `

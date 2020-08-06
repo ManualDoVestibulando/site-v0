@@ -5,8 +5,7 @@ import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';
 import * as S from './style';
 
-const Curso = ({ curso }) => {
-  console.log(curso);
+const Curso = ({ curso, notas }) => {
   return (
     <Layout>
       <S.Wrapper>
@@ -18,7 +17,7 @@ const Curso = ({ curso }) => {
         <S.NotasWrapper>
           <S.SubTitle>Notas</S.SubTitle>
           <S.WrapperChart>
-            <NotasChart />
+            <NotasChart notas={curso.notas} allNotas={notas} />
           </S.WrapperChart>
           <S.WrapperTable>
             <NotasTable notas={curso.notas} />
@@ -37,13 +36,18 @@ export const getStaticProps = async ({ params }) => {
         instituto {
           sigla
         }
-        notas(sort: "classificacao"){
+        notas{
           fase1
           fase2dia1
           fase2dia2
           redacao
           classificacao
         }
+      }
+      notas {
+        fase1
+        fase2dia1
+        fase2dia2
       }
     }
   `;
@@ -58,8 +62,12 @@ export const getStaticProps = async ({ params }) => {
 
   const data = response.data.data;
   const curso = data.cursos[0];
+  let notas = data.notas;
   //TODO: calcular total direito
   curso.notas.forEach((nota) => {
+    nota.total = (nota.fase1 * 100) / 90;
+  });
+  notas.forEach((nota) => {
     nota.total = (nota.fase1 * 100) / 90;
   });
 
@@ -74,6 +82,7 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       curso,
+      notas,
     },
   };
 };
