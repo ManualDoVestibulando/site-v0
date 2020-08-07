@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const ENDPOINT = 'http://server/';
+export const ENDPOINT = 'https://api.manualdovestibulando.digital/';
 
 const instance = axios.create({
   baseURL: ENDPOINT,
