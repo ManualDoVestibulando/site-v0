@@ -37,16 +37,20 @@ services:
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
 
-  client:
+  # client:
     #  restart: always
-    build:  ./client
-    environment:
-      NODE_ENV: production
-    depends_on:
-      - server
+    # build:  ./client
+    # environment:
+    #   NODE_ENV: production
+        # VIRTUAL_HOST: ${HOST_SERVER}
+        # VIRTUAL_NETWORK: nginx-proxy
+        # LETSENCRYPT_HOST: ${HOST_SERVER}
+        # LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    # depends_on:
+    #   - server
 
   server:
-    # restart: always
+    restart: always
     build:  ./server
     environment:
       NODE_ENV: production
@@ -64,7 +68,7 @@ services:
       - db
 
   db:
-    # restart: always
+    restart: always
     image: mongo
     volumes:
       - ./data/db:/data/db
