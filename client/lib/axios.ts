@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const ENDPOINT = 'http://server:1337/';
+export const ENDPOINT = 'http://server/';
 
 const instance = axios.create({
   baseURL: ENDPOINT,

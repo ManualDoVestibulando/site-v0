@@ -1,0 +1,7 @@
+{
+  "name": "notasusp",
+  "cwd": "/srv/app",
+  "script": "npm",
+  "args": "start",
+  "port": 80
+}
