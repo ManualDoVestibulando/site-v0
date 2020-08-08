@@ -9,7 +9,12 @@ const ListaRedacoes = ({ redacoes, loading }) => {
   return (
     <ListGroup>
       {redacoes.map((redacao) => (
-        <ListGroup.Item key={redacao.id} className="mb-2">
+        <ListGroup.Item
+          key={redacao.id}
+          className="mb-2"
+          action
+          onClick={() => console.log(redacao.id)}
+        >
           <p className="text-center p-0 m-0 lead">{redacao.titulo}</p>
           <br></br>
           <p className="text-center p-0 m-0">Nota: {redacao.nota}</p>
