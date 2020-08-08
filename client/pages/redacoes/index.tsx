@@ -9,7 +9,7 @@ const Redacoes = () => {
   const [redacoes, setRedacoes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const [redacoesPorPagina, setRedacoesPorPagina] = useState(2);
+  const [redacoesPorPagina, setRedacoesPorPagina] = useState(5);
 
   useEffect(() => {
     const fetchRedacoes = async () => {
