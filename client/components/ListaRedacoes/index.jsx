@@ -13,7 +13,7 @@ const ListaRedacoes = ({ redacoes, loading }) => {
           key={redacao.id}
           className="mb-2"
           action
-          onClick={() => console.log(redacao.id)}
+          onClick={() => console.log(redacao.foto.name)}
         >
           <p className="text-center p-0 m-0 lead">{redacao.titulo}</p>
           <br></br>
