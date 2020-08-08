@@ -3,12 +3,13 @@ import axios from '../../lib/axios';
 import { Row, Container } from 'react-bootstrap';
 import Layout from '../../components/Layout';
 import ListaRedacoes from '../../components/ListaRedacoes';
+import Paginacao from '../../components/Paginacao';
 
 const Redacoes = () => {
   const [redacoes, setRedacoes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const [postsPorPagina, setPostsPorPagina] = useState(10);
+  const [redacoesPorPagina, setRedacoesPorPagina] = useState(2);
 
   useEffect(() => {
     const fetchRedacoes = async () => {
@@ -18,6 +19,7 @@ const Redacoes = () => {
           redacaos {
             id
             titulo
+            nota
           }
         }
       `;
@@ -34,13 +36,27 @@ const Redacoes = () => {
     fetchRedacoes();
   }, []);
 
-  console.log(redacoes);
+  // Achar as redacoes atuais
+  const indexUltimaRedacao = paginaAtual * redacoesPorPagina;
+  const indexPrimeiraRedacao = indexUltimaRedacao - redacoesPorPagina;
+  const redacoesAtuais = redacoes.slice(
+    indexPrimeiraRedacao,
+    indexUltimaRedacao
+  );
+
+  //Muda de pagina
+  const paginar = (numeroPagina) => setPaginaAtual(numeroPagina);
 
   return (
     <Layout>
       <Container className="mt-5">
         <h2 className="text-center mb-3">Lista de Redações</h2>
-        <ListaRedacoes redacoes={redacoes} loading={loading} />
+        <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
+        <Paginacao
+          itensPorPagina={redacoesPorPagina}
+          itensTotal={redacoes.length}
+          paginar={paginar}
+        />
       </Container>
     </Layout>
   );
