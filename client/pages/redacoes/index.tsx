@@ -21,7 +21,7 @@ const Redacoes = () => {
             titulo
             nota
             foto{
-              name
+              url
             }
           }
         }
