@@ -1,5 +1,6 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
+import Link from 'next/link';
 
 const ListaRedacoes = ({ redacoes, loading }) => {
   if (loading) {
@@ -9,19 +10,16 @@ const ListaRedacoes = ({ redacoes, loading }) => {
   return (
     <ListGroup>
       {redacoes.map((redacao) => (
-        <ListGroup.Item
-          key={redacao.id}
-          className="mb-2"
-          action
-          onClick={() =>
-            (location.href =
-              'https://api.manualdovestibulando.digital' + redacao.foto.url)
-          }
+        <Link
+          href="/redacoes/fuvest/[id]"
+          as={`/redacoes/fuvest/${redacao.id}`}
         >
-          <p className="text-center p-0 m-0 lead">{redacao.titulo}</p>
-          <br></br>
-          <p className="text-center p-0 m-0">Nota: {redacao.nota}</p>
-        </ListGroup.Item>
+          <ListGroup.Item key={redacao.id} className="mb-2" action>
+            <p className="text-center p-0 m-0 lead">{redacao.titulo}</p>
+            <br></br>
+            <p className="text-center p-0 m-0">Nota: {redacao.nota}</p>
+          </ListGroup.Item>
+        </Link>
       ))}
     </ListGroup>
   );
