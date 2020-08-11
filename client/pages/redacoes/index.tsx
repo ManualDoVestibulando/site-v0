@@ -20,9 +20,7 @@ const Redacoes = () => {
             id
             titulo
             nota
-            foto{
-              url
-            }
+            foto
           }
         }
       `;
