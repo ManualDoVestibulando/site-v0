@@ -26,6 +26,7 @@ const Redacoes = () => {
             id
             titulo
             nota
+            ano
           }
         }
       `;
@@ -83,12 +84,13 @@ const Redacoes = () => {
 
   //Muda de pagina
   const paginar = (numeroPagina) => setPaginaAtual(numeroPagina);
-  const paginarEnem = (numeroPagina) => setPaginaAtual(numeroPagina);
+  const paginarEnem = (numeroPaginaEnem) =>
+    setPaginaAtualEnem(numeroPaginaEnem);
 
   return (
     <Layout>
       <Container className="mt-5">
-        <h2 className="text-center mb-3">Lista de Redações</h2>
+        <h2 className="text-center mb-3">Lista de Redações Fuvest</h2>
         <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
         <Paginacao
           itensPorPagina={redacoesPorPagina}
@@ -104,7 +106,7 @@ const Redacoes = () => {
         <Paginacao
           itensPorPagina={redacoesPorPaginaEnem}
           itensTotal={redacoesEnem.length}
-          paginar={paginar}
+          paginar={paginarEnem}
         />
       </Container>
     </Layout>

@@ -11,7 +11,7 @@ function RedacaoEnem({ redacao, url }) {
     <div>
       <MainNavbar />
       <Container>
-        <h1 className="text-center mt-2 mb-2">{redacao.titulo}</h1>
+        <h1 className="text-center mt-2 mb-2">{redacao.ano}</h1>
         <img
           className="mx-auto d-block"
           src={'https://api.manualdovestibulando.digital' + url}
@@ -32,6 +32,7 @@ export async function getServerSideProps(context) {
             titulo
             nota_total
             foto
+            ano
           }
         }
       `;

@@ -15,7 +15,7 @@ const ListaRedacoes = ({ redacoes, loading }) => {
           as={`/redacoes/fuvest/${redacao.id}`}
         >
           <ListGroup.Item key={redacao.id} className="mb-2" action>
-            <p className="text-center p-0 m-0 lead">{redacao.titulo}</p>
+            <p className="text-center p-0 m-0 lead">{redacao.ano}</p>
             <br></br>
             <p className="text-center p-0 m-0">Nota: {redacao.nota}</p>
           </ListGroup.Item>
