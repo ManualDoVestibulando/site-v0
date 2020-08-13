@@ -44,7 +44,7 @@ export const getStaticProps = async ({ params }) => {
           classificacao
         }
       }
-      notas {
+      notas(sort: "classificacao:asc"){
         fase1
         fase2dia1
         fase2dia2
@@ -64,11 +64,12 @@ export const getStaticProps = async ({ params }) => {
   const curso = data.cursos[0];
   let notas = data.notas;
   //TODO: calcular total direito
+
   curso.notas.forEach((nota) => {
-    nota.total = (nota.fase1 * 100) / 90;
+    nota.total = ((nota.fase1 * 100 / 90)*1000 + (nota.fase2dia1 * 10) + (nota.fase2dia2 * 10))/3;
   });
   notas.forEach((nota) => {
-    nota.total = (nota.fase1 * 100) / 90;
+    nota.total = ((nota.fase1 * 100 / 90)*1000 + (nota.fase2dia1 * 10) + (nota.fase2dia2 * 10))/3;
   });
 
   curso.notas.forEach((nota) =>

@@ -6,10 +6,10 @@ const DisChart = ({ allNotas, notas }) => {
   let values = notas.map((nota) => nota.total);
   let Allvalues = allNotas.map((nota) => nota.total);
 
-  let aggrupad = arrCount(values, { max: 100, min: 0, divisions: 20 });
+  let aggrupad = arrCount(values, { max: 100, min: 0, divisions: 25 });
   let charData = aggrupad.map(value => [value.y, value.x])
 
-  let allAggrupad = arrCount(Allvalues, { max: 100, min: 0, divisions: 20 });
+  let allAggrupad = arrCount(Allvalues, { max: 100, min: 0, divisions: 25 });
   let allCharData = allAggrupad.map(value => [value.y, value.x])
   console.log(allCharData)
   const data = [
