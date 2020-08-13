@@ -90,7 +90,7 @@ const Redacoes = () => {
   return (
     <Layout>
       <Container className="mt-5">
-        <h2 className="text-center mb-3">Lista de Redações Fuvest</h2>
+        <h2 className="text-center mb-3">Lista de Redações da Fuvest</h2>
         <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
         <Paginacao
           itensPorPagina={redacoesPorPagina}
@@ -98,7 +98,7 @@ const Redacoes = () => {
           paginar={paginar}
         />
 
-        <h2 className="text-center mb-3">Lista de Redações Enem</h2>
+        <h2 className="text-center mb-3 mt-4">Lista de Redações do Enem</h2>
         <ListaRedacoesEnem
           redacoes={redacoesAtuaisEnem}
           loading={loadingEnem}

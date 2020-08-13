@@ -34,7 +34,9 @@ export const Tbody = styled.div`
     cursor: pointer;
   }
 
-  ${props => props.show &&`
+  ${(props) =>
+    props.show &&
+    `
     display: none;
   `}
 `;
