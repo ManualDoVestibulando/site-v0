@@ -106,12 +106,20 @@ export const getStaticPaths = async () => {
   const data = response.data.data;
 
   return {
-    paths: data.cursos.map((curso) => ({
-      params: {
-        curso: curso.slug_,
-        instituto: curso.instituto.slug_,
-      },
-    })),
+    paths: data.cursos.map((curso) => {
+      let institutoSlug = 'outro';
+      if (curso.instituto != null) {
+        if (typeof curso.instituto.slug_ === 'string') {
+          institutoSlug = curso.instituto.slug_;
+        }
+      }
+      return {
+        params: {
+          curso: curso.slug_,
+          instituto: institutoSlug,
+        },
+      };
+    }),
     fallback: false,
   };
 };
