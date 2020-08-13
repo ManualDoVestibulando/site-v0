@@ -24,7 +24,10 @@ export default function Sobre({ sobre, equipes }) {
                 <S.Colaborador>
                   <img
                     loading="lazy"
-                    src={'http://localhost:1337' + colaborador.imagem.url}
+                    src={
+                      'https://api.manualdovestibulando.digital' +
+                      colaborador.imagem.url
+                    }
                   />
                   <h4>{colaborador.nome}</h4>
                 </S.Colaborador>
