@@ -4,9 +4,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import axios from '../../../lib/axios';
 
 function RedacaoEnem({ redacao, url }) {
-  console.log(redacao);
-  console.log(url);
-
   return (
     <div>
       <MainNavbar />
@@ -24,7 +21,6 @@ function RedacaoEnem({ redacao, url }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-  console.log(id);
 
   const query = `
         query Querry($id: String!) {
@@ -36,8 +32,6 @@ export async function getServerSideProps(context) {
           }
         }
       `;
-
-  console.log(query);
 
   const res = await axios.post('/graphql', {
     query,

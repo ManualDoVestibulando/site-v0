@@ -12,7 +12,6 @@ const DisChart = ({ allNotas, notas }) => {
 
   let allAggrupad = arrCount(Allvalues, { max: 1000, min: 0, divisions: 25 });
   let allCharData = allAggrupad.map(value => [value.y, value.x])
-  console.log(allCharData)
   const data = [
     {
       label: 'Notas',

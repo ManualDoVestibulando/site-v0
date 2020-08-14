@@ -59,7 +59,6 @@ const Redacoes = () => {
       const data = res.data.data.redacaoEnems;
       setRedacoesEnem(data);
       setLoadingEnem(false);
-      console.log(data);
     };
 
     fetchRedacoes();

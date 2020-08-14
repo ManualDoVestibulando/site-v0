@@ -16,7 +16,6 @@ export const arrCount = (
   arr.forEach((el) => {
     if (el > max || el < min) return
     let index = Math.floor((el - min) / step);
-    console.log(index)
     counts[index].x += 1;
   });
   return counts;
