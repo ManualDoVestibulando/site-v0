@@ -17,7 +17,7 @@ const Curso = ({ curso, notas }) => {
         <S.NotasWrapper>
           <S.SubTitle>Notas</S.SubTitle>
           <S.WrapperChart>
-            <NotasChart notas={curso.notas} allNotas={notas} />
+            <NotasChart notas={curso.notas} allNotas={notas} /> 
           </S.WrapperChart>
           <S.WrapperTable>
             <NotasTable notas={curso.notas} />
@@ -36,7 +36,7 @@ export const getStaticProps = async ({ params }) => {
         instituto {
           sigla
         }
-        notas{
+        notas(sort: "classificacao:asc"){
           fase1
           fase2dia1
           fase2dia2
@@ -44,7 +44,7 @@ export const getStaticProps = async ({ params }) => {
           classificacao
         }
       }
-      notas {
+      notas{
         fase1
         fase2dia1
         fase2dia2
@@ -63,12 +63,12 @@ export const getStaticProps = async ({ params }) => {
   const data = response.data.data;
   const curso = data.cursos[0];
   let notas = data.notas;
-  //TODO: calcular total direito
+
   curso.notas.forEach((nota) => {
-    nota.total = (nota.fase1 * 100) / 90;
+    nota.total = ((nota.fase1 / 90)*1000 + nota.fase2dia1 * 10 + nota.fase2dia2 * 10)/3;
   });
   notas.forEach((nota) => {
-    nota.total = (nota.fase1 * 100) / 90;
+    nota.total = ((nota.fase1 / 90)*1000 + nota.fase2dia1 * 10 + nota.fase2dia2 * 10)/3;
   });
 
   curso.notas.forEach((nota) =>
@@ -106,12 +106,20 @@ export const getStaticPaths = async () => {
   const data = response.data.data;
 
   return {
-    paths: data.cursos.map((curso) => ({
-      params: {
-        curso: curso.slug_,
-        instituto: curso.instituto.slug_,
-      },
-    })),
+    paths: data.cursos.map((curso) => {
+      let institutoSlug = 'outro';
+      if (curso.instituto != null) {
+        if (typeof curso.instituto.slug_ === 'string') {
+          institutoSlug = curso.instituto.slug_;
+        }
+      }
+      return {
+        params: {
+          curso: curso.slug_,
+          instituto: institutoSlug,
+        },
+      };
+    }),
     fallback: false,
   };
 };
