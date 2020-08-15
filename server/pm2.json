@@ -2,6 +2,6 @@
   "name": "notasusp",	
   "cwd": "/srv/app",	
   "script": "npm",	
-  "args": "start",	
+  "args": "run develop",	
   "port": 80	
 }
