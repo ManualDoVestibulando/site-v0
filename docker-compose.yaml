@@ -36,15 +36,16 @@ services:
       - "./proxy/certs:/etc/nginx/certs:rw"
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
+      - DEBUG=true
 
   # client:
     #  restart: always
     # build:  ./client
     # environment:
     #   NODE_ENV: production
-        # VIRTUAL_HOST: ${HOST_SERVER}
+        # VIRTUAL_HOST: ${HOST_CLIENT}
         # VIRTUAL_NETWORK: nginx-proxy
-        # LETSENCRYPT_HOST: ${HOST_SERVER}
+        # LETSENCRYPT_HOST: ${HOST_CLIENT}
         # LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
     # depends_on:
     #   - server
@@ -53,7 +54,7 @@ services:
     restart: always
     build:  ./server
     environment:
-      NODE_ENV: production
+      # NODE_ENV: production
       DATABASE_HOST: db
       DATABASE_NAME: notas
       DATABASE_PORT: 27017
@@ -70,5 +71,9 @@ services:
   db:
     restart: always
     image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./data/db:/data/db
+      - ./data/backup:/data/backup
