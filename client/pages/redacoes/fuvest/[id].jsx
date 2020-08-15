@@ -11,7 +11,7 @@ function RedacaoFuvest({ redacao, url }) {
         <h1 className="text-center mt-2 mb-2">{redacao.ano}</h1>
         <img
           className="mx-auto d-block"
-          src={'https://api.manualdovestibulando.digital' + url}
+          src={'https://api.manualdovestibulando.com.br' + url}
         ></img>
         <h1 className="text-center mb-2">Nota: {redacao.nota}</h1>
       </Container>
@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
   const redacao = res.data.data.redacaos[0];
 
   const res2 = await axios.get(
-    'https://api.manualdovestibulando.digital/upload/files?name=' + redacao.foto
+    'https://api.manualdovestibulando.com.br/upload/files?name=' + redacao.foto
   );
 
   const url = res2.data[0].url;

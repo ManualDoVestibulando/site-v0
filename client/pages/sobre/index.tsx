@@ -25,7 +25,7 @@ export default function Sobre({ sobre, equipes }) {
                   <img
                     loading="lazy"
                     src={
-                      'https://api.manualdovestibulando.digital' +
+                      'https://api.manualdovestibulando.com.br' +
                       colaborador.imagem.url
                     }
                   />
