@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTable } from 'react-table';
 import { notasHeaders } from './data';
-import * as S from './style';
+import BTable from 'react-bootstrap/Table';
 
 function NotasTable({ notas, showBody }: { notas: Array<any>; showBody?: boolean }) {
   const columns = React.useMemo(notasHeaders, []);
@@ -15,46 +15,46 @@ function NotasTable({ notas, showBody }: { notas: Array<any>; showBody?: boolean
     footerGroups,
   } = useTable({ columns, data: notas });
   return (
-    <S.Table {...getTableProps()}>
-      <S.Thead>
+    <BTable striped bordered hover {...getTableProps()}>
+      <thead>
         {headerGroups.map((headerGroup, i) => (
-          <S.Trow {...headerGroup.getHeaderGroupProps()}>
+          <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <S.Tcell className="tcell" {...column.getHeaderProps()}>
+              <th className="tcell" {...column.getHeaderProps()}>
                 {column.render('Header')}
-              </S.Tcell>
+              </th>
             ))}
-          </S.Trow>
+          </tr>
         ))}
-      </S.Thead>
-      <S.Tbody show={showBody} {...getTableBodyProps()}>
+      </thead>
+      <tbody show={showBody} {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <S.Trow {...row.getRowProps()}>
+            <tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
                 return (
-                  <S.Tcell className="tcell" {...cell.getCellProps()}>
+                  <th className="tcell" {...cell.getCellProps()}>
                     {cell.render('Cell')}
-                  </S.Tcell>
+                  </th>
                 );
               })}
-            </S.Trow>
+            </tr>
           );
         })}
-      </S.Tbody>
-      <S.Tfoot>
+      </tbody>
+      <tfoot>
         {footerGroups.map((group) => (
-          <S.Trow {...group.getFooterGroupProps()}>
+          <tr {...group.getFooterGroupProps()}>
             {group.headers.map((column) => (
-              <S.Tcell {...column.getFooterProps()}>
+              <th {...column.getFooterProps()}>
                 {column.render('Footer')}
-              </S.Tcell>
+              </th>
             ))}
-          </S.Trow>
+          </tr>
         ))}
-      </S.Tfoot>
-    </S.Table>
+      </tfoot>
+    </BTable>
   );
 }
 

@@ -3,27 +3,33 @@ import NotasChart from '../../../../components/NotasChart';
 import NotasTable from '../../../../components/NotasTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';
-import * as S from '../../../../styles/fuvest-style';
+import { Col, Row } from 'react-bootstrap';
 
 const Curso = ({ data, curso, notas }) => {
   return (
     <Layout>
-      <S.Wrapper>
-        <S.WrapperTitle>
-          <S.Title>
+      <Row className="mt-4">
+        <Col md={12} xl={{span: 8, offset: 2}}>
+          <h1>
             {curso.nome} - {curso.instituto.sigla}
-          </S.Title>
-        </S.WrapperTitle>
-        <S.NotasWrapper>
-          <S.SubTitle>Notas</S.SubTitle>
-          <S.WrapperChart>
-            <NotasChart notas={curso.notas} allNotas={notas} /> 
-          </S.WrapperChart>
-          <S.WrapperTable>
-            <NotasTable notas={curso.notas} />
-          </S.WrapperTable>
-        </S.NotasWrapper>
-      </S.Wrapper>
+          </h1>
+        </Col>
+      </Row>
+      <Row className="mt-2">
+        <Col md={12} xl={{span: 6, offset: 3}}>
+          <h2>Notas</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={12} xl={{span: 6, offset: 3}}>
+          <NotasChart notas={curso.notas} allNotas={notas} />
+        </Col>
+      </Row>
+      <Row className="my-3">
+        <Col md={12} xl={{span: 6, offset: 3}}>
+          <NotasTable notas={curso.notas} />
+        </Col>
+      </Row>
     </Layout>
   );
 };
@@ -67,10 +73,14 @@ export const getStaticProps = async ({ params }) => {
   curso.notas = curso.notas.filter((value) => value != null);
 
   curso.notas.forEach((nota) => {
-    nota.total = ((nota.fase1 / 90)*1000 + nota.fase2dia1 * 10 + nota.fase2dia2 * 10)/3;
+    nota.total =
+      ((nota.fase1 / 90) * 1000 + nota.fase2dia1 * 10 + nota.fase2dia2 * 10) /
+      3;
   });
   notas.forEach((nota) => {
-    nota.total = ((nota.fase1 / 90)*1000 + nota.fase2dia1 * 10 + nota.fase2dia2 * 10)/3;
+    nota.total =
+      ((nota.fase1 / 90) * 1000 + nota.fase2dia1 * 10 + nota.fase2dia2 * 10) /
+      3;
   });
 
   curso.notas.forEach((nota) =>
