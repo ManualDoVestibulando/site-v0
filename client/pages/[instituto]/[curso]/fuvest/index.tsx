@@ -6,11 +6,10 @@ import axios from '../../../../lib/axios';
 import * as S from '../../../../styles/fuvest-style';
 
 const Curso = ({ data, curso, notas }) => {
-  console.log(data)
   return (
     <Layout>
       <S.Wrapper>
-        {/* <S.WrapperTitle>
+        <S.WrapperTitle>
           <S.Title>
             {curso.nome} - {curso.instituto.sigla}
           </S.Title>
@@ -23,7 +22,7 @@ const Curso = ({ data, curso, notas }) => {
           <S.WrapperTable>
             <NotasTable notas={curso.notas} />
           </S.WrapperTable>
-        </S.NotasWrapper> */}
+        </S.NotasWrapper>
       </S.Wrapper>
     </Layout>
   );
@@ -63,9 +62,10 @@ export const getStaticProps = async ({ params }) => {
 
   const data = response.data.data;
   const curso = data.cursos[0];
-  let notas = data.notas;
 
-  /*
+  let notas = data.notas.filter((value) => value != null);
+  curso.notas = curso.notas.filter((value) => value != null);
+
   curso.notas.forEach((nota) => {
     nota.total = ((nota.fase1 / 90)*1000 + nota.fase2dia1 * 10 + nota.fase2dia2 * 10)/3;
   });
@@ -80,7 +80,6 @@ export const getStaticProps = async ({ params }) => {
       } catch (_) {}
     })
   );
-   */
 
   return {
     props: {

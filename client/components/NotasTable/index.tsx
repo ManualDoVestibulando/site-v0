@@ -3,8 +3,9 @@ import { useTable } from 'react-table';
 import { notasHeaders } from './data';
 import * as S from './style';
 
-function NotasTable({ notas, showBody }: { notas: any; showBody?: boolean }) {
+function NotasTable({ notas, showBody }: { notas: Array<any>; showBody?: boolean }) {
   const columns = React.useMemo(notasHeaders, []);
+
   const {
     getTableProps,
     getTableBodyProps,
