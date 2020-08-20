@@ -11,7 +11,8 @@ WORKDIR /srv/app
 COPY . /srv/app
 
 # install dependencies
-RUN npm install --productio
+RUN npm install
+EXPOSE 80 443
 
 # start app
 RUN chmod a+x ./startup.sh
