@@ -36,19 +36,18 @@ services:
       - "./proxy/certs:/etc/nginx/certs:rw"
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
-      - DEBUG=true
 
-  # client:
-    #  restart: always
-    # build:  ./client
-    # environment:
-    #   NODE_ENV: production
-        # VIRTUAL_HOST: ${HOST_CLIENT}
-        # VIRTUAL_NETWORK: nginx-proxy
-        # LETSENCRYPT_HOST: ${HOST_CLIENT}
-        # LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-    # depends_on:
-    #   - server
+  client:
+    restart: always
+    build:  ./client
+    environment:
+      NODE_ENV: production
+      VIRTUAL_HOST: ${HOST_CLIENT}
+      VIRTUAL_NETWORK: nginx-proxy
+      LETSENCRYPT_HOST: ${HOST_CLIENT}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    depends_on:
+      - server
 
   server:
     restart: always
@@ -65,6 +64,8 @@ services:
       VIRTUAL_NETWORK: nginx-proxy
       LETSENCRYPT_HOST: ${HOST_SERVER}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    volumes:
+      - "./server:/srv/app"
     depends_on:
       - db
 
