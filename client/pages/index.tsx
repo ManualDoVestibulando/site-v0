@@ -10,7 +10,7 @@ export default function Index() {
       <Container>
         <Row className="mt-3">
           <Col md lg="8">
-            <p className="mt-4">
+            <p className="mt-4 texto-introducao">
               Bem vindo ao Manual do Vestibulando! Aqui você encontra as
               principais informações sobre os cursos de ingresso da Universidade
               de São Paulo: temos as notas dos ingressantes; um banco com mais
@@ -29,6 +29,12 @@ export default function Index() {
           <IndexCardDeck />
         </Row>
       </Container>
+      <style jsx>{`
+        .texto-introducao {
+          font-size: 18px;
+          line-height: 160%;
+        }
+      `}</style>
     </div>
   );
 }
