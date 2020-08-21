@@ -4,8 +4,16 @@ import Link from 'next/link';
 
 const MainNavbar = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="#home">Manual do Vestibulando</Navbar.Brand>
+    <Navbar expand="lg">
+      <Navbar.Brand href="#home">
+        <img
+          src="logo_laranja_manual_semfundo.svg"
+          width="80"
+          height="80"
+          className="d-inline-block align-top"
+          alt="Manual do Vestibulando"
+        />
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
@@ -31,6 +39,12 @@ const MainNavbar = () => {
           </Link>
         </Nav>
       </Navbar.Collapse>
+      <style jsx>{`
+        .home {
+          color: black;
+          background-color: coral;
+        }
+      `}</style>
     </Navbar>
   );
 };

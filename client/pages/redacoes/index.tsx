@@ -24,7 +24,6 @@ const Redacoes = () => {
         query Querry {
           redacaos {
             id
-            titulo
             nota
             ano
           }
