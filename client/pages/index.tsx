@@ -10,15 +10,15 @@ export default function Index() {
       <Container>
         <Row className="mt-3">
           <Col md lg="8">
-            <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse tempus tellus id quam aliquam, vitae bibendum tellus
-              suscipit. Cras fermentum blandit dui ac auctor. Suspendisse
-              malesuada ut dui sed volutpat. Maecenas bibendum rutrum velit id
-              eleifend. Nunc id massa lorem. Nulla posuere sed urna sed ornare.
-              Suspendisse sed nulla et felis bibendum tempus nec a turpis.
-              Quisque quis lectus lectus. Maecenas auctor efficitur dui vel
-              varius.
+            <p className="mt-4 texto-introducao">
+              Bem vindo ao Manual do Vestibulando! Aqui você encontra as
+              principais informações sobre os cursos de ingresso da Universidade
+              de São Paulo: temos as notas dos ingressantes; um banco com mais
+              de 300 redações da Fuvest e do Enem; depoimentos de alunos sobre
+              experiências de vestibular, sobre o início da vida na faculdade; e
+              temos textos de grupos acadêmicos sobre a estrutura do curso para
+              ajudar você a escolher a carreira dos seus sonhos na melhor
+              faculdade!
             </p>
           </Col>
           <Col md lg="4">
@@ -29,6 +29,12 @@ export default function Index() {
           <IndexCardDeck />
         </Row>
       </Container>
+      <style jsx>{`
+        .texto-introducao {
+          font-size: 18px;
+          line-height: 160%;
+        }
+      `}</style>
     </div>
   );
 }

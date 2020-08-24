@@ -25,7 +25,6 @@ export async function getServerSideProps(context) {
   const query = `
         query Querry($id: String!) {
           redacaoEnems(where: { id: $id} ) {
-            titulo
             nota_total
             foto
             ano

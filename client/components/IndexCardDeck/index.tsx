@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardDeck, Card } from 'react-bootstrap';
+import { CardDeck, Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
 
 const MainNavbar = () => {
@@ -20,6 +20,11 @@ const MainNavbar = () => {
             Acadêmicos, desde o foco do aprendizado até mesmo porque aquela
             carreira é a dos seus sonhos.
           </Card.Text>
+          <Link href="/notas">
+            <Button className="botao-card" variant="warning">
+              Ir para cursos
+            </Button>
+          </Link>
         </Card.Body>
       </Card>
       <Card bg="light" border="secondary">
@@ -36,6 +41,11 @@ const MainNavbar = () => {
             referentes à cada curso, com classificação do candidato no
             vestibular.
           </Card.Text>
+          <Link href="/notas">
+            <Button className="botao-card" variant="warning">
+              Ir para notas
+            </Button>
+          </Link>
         </Card.Body>
       </Card>
       <Card bg="light" border="secondary">
@@ -47,14 +57,33 @@ const MainNavbar = () => {
         />
         <Card.Body>
           <Card.Title>Explorar Redações</Card.Title>
-          <Card.Text>
+          <Card.Text className="mb-4">
             Nessa seção, é possível explorar redações dos vestibulares de
             ingresso, com a variedade de notas, estilos de escrita e
             argumentações de diversos candidatos, proporcionando uma visão mais
             ampla sobre como a capacidade de argumentação é cobrada.
           </Card.Text>
+          <Link href="/redacoes">
+            <Button className="botao-card" variant="warning">
+              Ir para redações
+            </Button>
+          </Link>
         </Card.Body>
       </Card>
+      <style jsx global>{`
+        .botao-card {
+          background-color: #ff8a00;
+          border-color: #ff8a00;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+        }
+        .botao-card:hover {
+          border-color: #a6a6a6;
+          background-color: #d97707;
+        }
+      `}</style>
     </CardDeck>
   );
 };
