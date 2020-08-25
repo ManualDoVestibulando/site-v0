@@ -21,7 +21,7 @@ const MainNavbar = () => {
             carreira é a dos seus sonhos.
           </Card.Text>
           <Link href="/notas">
-            <Button className="botao-card" variant="warning">
+            <Button className="botao-card texto-botao" variant="warning">
               Ir para cursos
             </Button>
           </Link>
@@ -42,7 +42,7 @@ const MainNavbar = () => {
             vestibular.
           </Card.Text>
           <Link href="/notas">
-            <Button className="botao-card" variant="warning">
+            <Button className="botao-card texto-botao" variant="warning">
               Ir para notas
             </Button>
           </Link>
@@ -64,7 +64,7 @@ const MainNavbar = () => {
             ampla sobre como a capacidade de argumentação é cobrada.
           </Card.Text>
           <Link href="/redacoes">
-            <Button className="botao-card" variant="warning">
+            <Button className="botao-card texto-botao" variant="warning">
               Ir para redações
             </Button>
           </Link>
@@ -82,6 +82,10 @@ const MainNavbar = () => {
         .botao-card:hover {
           border-color: #a6a6a6;
           background-color: #d97707;
+        }
+        .texto-botao {
+          font-weight: bold;
+          font-size: 18px;
         }
       `}</style>
     </CardDeck>

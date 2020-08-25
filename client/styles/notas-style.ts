@@ -9,7 +9,7 @@ export const Wrapper = styled.section`
   justify-content: center;
   text-align: center;
   align-items: center;
-  background-image: url('/usp.jpg');
+  background-image: url('/0001.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 `;
@@ -18,8 +18,8 @@ export const Wrapper = styled.section`
 export const Title = styled.h1`
   font-size: 1.5rem;
   display: none;
-`
+`;
 
 export const WrapperSearch = styled.div`
   width: min(50rem, 100%);
-`
+`;

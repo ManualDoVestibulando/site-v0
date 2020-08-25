@@ -34,8 +34,8 @@ const Redacoes = () => {
         query,
       });
 
-      const data = res.data.data;
-      setRedacoes(data.redacaos);
+      const data = res.data.data.redacaos;
+      setRedacoes(data);
       setLoading(false);
     };
 
