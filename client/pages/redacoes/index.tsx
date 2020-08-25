@@ -35,6 +35,10 @@ const Redacoes = () => {
       });
 
       const data = res.data.data.redacaos;
+      data.sort((item1, item2) => {
+        if (item1.ano != item2.ano) return item2.ano - item1.ano;
+        return item2.nota - item1.nota;
+      });
       setRedacoes(data);
       setLoading(false);
     };
@@ -56,6 +60,10 @@ const Redacoes = () => {
       });
 
       const data = res.data.data.redacaoEnems;
+      data.sort((item1, item2) => {
+        if (item1.ano != item2.ano) return item2.ano - item1.ano;
+        return item2.nota_total - item1.nota_total;
+      });
       setRedacoesEnem(data);
       setLoadingEnem(false);
     };
