@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.section`
   padding: 4em;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -12,6 +12,8 @@ export const Wrapper = styled.section`
   background-image: url('/0001.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 `;
 
 // Show only to robot
@@ -21,5 +23,5 @@ export const Title = styled.h1`
 `;
 
 export const WrapperSearch = styled.div`
-  width: min(50rem, 100%);
+  width: min(60rem, 100%);
 `;

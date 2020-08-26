@@ -95,26 +95,39 @@ const Redacoes = () => {
 
   return (
     <Layout>
-      <Container className="mt-5">
-        <h2 className="text-center mb-3">Lista de Redações da Fuvest</h2>
-        <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
-        <Paginacao
-          itensPorPagina={redacoesPorPagina}
-          itensTotal={redacoes.length}
-          paginar={paginar}
-        />
+      <div className="fundo">
+        <Container className="fundo">
+          <h2 className="text-center mb-3 pt-3">REDAÇÕES DA FUVEST</h2>
+          <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
+          <Paginacao
+            itensPorPagina={redacoesPorPagina}
+            itensTotal={redacoes.length}
+            paginar={paginar}
+          />
 
-        <h2 className="text-center mb-3 mt-4">Lista de Redações do Enem</h2>
-        <ListaRedacoesEnem
-          redacoes={redacoesAtuaisEnem}
-          loading={loadingEnem}
-        />
-        <Paginacao
-          itensPorPagina={redacoesPorPaginaEnem}
-          itensTotal={redacoesEnem.length}
-          paginar={paginarEnem}
-        />
-      </Container>
+          <h2 className="text-center mb-3 mt-4">REDAÇÕES DO ENEM</h2>
+          <ListaRedacoesEnem
+            redacoes={redacoesAtuaisEnem}
+            loading={loadingEnem}
+          />
+          <Paginacao
+            itensPorPagina={redacoesPorPaginaEnem}
+            itensTotal={redacoesEnem.length}
+            paginar={paginarEnem}
+          />
+        </Container>
+      </div>
+      <style jsx>
+        {`
+          .fundo {
+            background-image: url('0001.jpg');
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+          }
+        `}
+      </style>
     </Layout>
   );
 };

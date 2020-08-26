@@ -9,7 +9,7 @@ const MainNavbar = () => {
         <Link href="/">
           <Navbar.Brand href="#home" className="m-2 p-0">
             <img
-              src="./logo_transparente.png"
+              src="/logo_transparente.png"
               width="140"
               className="d-inline-block align-top"
               alt="MDV"
