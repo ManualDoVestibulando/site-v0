@@ -9,7 +9,7 @@ export const Wrapper = styled.section`
   justify-content: center;
   text-align: center;
   align-items: center;
-  background-image: url('/0001.jpg');
+  background-image: url('/fundo_azul.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
