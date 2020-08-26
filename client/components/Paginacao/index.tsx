@@ -9,7 +9,7 @@ const Paginacao = ({ itensPorPagina, itensTotal, paginar }) => {
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="pagination mb-0">
         {numerosPaginas.map((numero) => (
           <li key={numero}>
             <button onClick={() => paginar(numero)} className="page-link">

@@ -7,14 +7,12 @@ const Layout = ({ children }) => (
   <>
     <Head>
       <title>Notas USP</title>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
     </Head>
     <header>
       <MainNavbar />
     </header>
-    <main>
-      {children}
-    </main>
+    <main>{children}</main>
   </>
 );
 

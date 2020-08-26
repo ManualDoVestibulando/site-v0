@@ -96,35 +96,47 @@ const Redacoes = () => {
   return (
     <Layout>
       <div className="fundo">
-        <Container className="fundo">
-          <h2 className="text-center mb-3 pt-3">REDAÇÕES DA FUVEST</h2>
-          <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
-          <Paginacao
-            itensPorPagina={redacoesPorPagina}
-            itensTotal={redacoes.length}
-            paginar={paginar}
-          />
-
-          <h2 className="text-center mb-3 mt-4">REDAÇÕES DO ENEM</h2>
-          <ListaRedacoesEnem
-            redacoes={redacoesAtuaisEnem}
-            loading={loadingEnem}
-          />
-          <Paginacao
-            itensPorPagina={redacoesPorPaginaEnem}
-            itensTotal={redacoesEnem.length}
-            paginar={paginarEnem}
-          />
+        <div className="p-3"></div>
+        <Container>
+          <div className="bloco-red">
+            <h2 className="text-center mb-3">REDAÇÕES DA FUVEST</h2>
+            <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
+            <Paginacao
+              itensPorPagina={redacoesPorPagina}
+              itensTotal={redacoes.length}
+              paginar={paginar}
+            />
+          </div>
+          <div className="p-3"></div>
+          <div className="bloco-red">
+            <h2 className="text-center mb-3 mt-4">REDAÇÕES DO ENEM</h2>
+            <ListaRedacoesEnem
+              redacoes={redacoesAtuaisEnem}
+              loading={loadingEnem}
+            />
+            <Paginacao
+              itensPorPagina={redacoesPorPaginaEnem}
+              itensTotal={redacoesEnem.length}
+              paginar={paginarEnem}
+            />
+          </div>
+          <div className="p-3"></div>
         </Container>
       </div>
       <style jsx>
         {`
           .fundo {
-            background-image: url('0001.jpg');
+            background-image: url('fundo_vermelho.jpg');
+            min-height: 100vh;
             height: 100%;
             background-position: center;
             background-size: cover;
             background-attachment: fixed;
+          }
+          .bloco-red {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 40px;
           }
         `}
       </style>

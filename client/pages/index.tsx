@@ -1,12 +1,12 @@
 import React from 'react';
 import MainNavbar from '../components/MainNavbar';
 import IndexCardDeck from '../components/IndexCardDeck';
+import Layout from '../components/Layout';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
 export default function Index() {
   return (
-    <div>
-      <MainNavbar />
+    <Layout>
       <Container>
         <Row className="mt-3">
           <Col md lg="8">
@@ -35,6 +35,6 @@ export default function Index() {
           line-height: 160%;
         }
       `}</style>
-    </div>
+    </Layout>
   );
 }
