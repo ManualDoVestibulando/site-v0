@@ -11,13 +11,20 @@ const Paginacao = ({ itensPorPagina, itensTotal, paginar }) => {
     <nav>
       <ul className="pagination mb-0">
         {numerosPaginas.map((numero) => (
-          <li key={numero}>
+          <li className="page-item item" key={numero}>
             <button onClick={() => paginar(numero)} className="page-link">
               {numero}
             </button>
           </li>
         ))}
       </ul>
+      <style jsx global>
+        {`
+          .item {
+            flex-wrap: wrap;
+          }
+        `}
+      </style>
     </nav>
   );
 };

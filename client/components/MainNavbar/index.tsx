@@ -34,6 +34,11 @@ const MainNavbar = () => {
                 REDAÇÕES
               </Nav.Link>
             </Link>
+            <Link href="/depoimentos">
+              <Nav.Link href="#depoimentos" className="ml-lg-5 my-2 my-lg-0">
+                DEPOIMENTOS
+              </Nav.Link>
+            </Link>
             <Link href="/sobre">
               <Nav.Link href="#sobre" className="ml-lg-5 my-2 my-lg-0">
                 SOBRE

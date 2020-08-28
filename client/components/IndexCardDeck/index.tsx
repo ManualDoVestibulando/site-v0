@@ -14,7 +14,7 @@ const MainNavbar = () => {
         />
         <Card.Body>
           <Card.Title>Descobrir cursos</Card.Title>
-          <Card.Text>
+          <Card.Text className="mb-4">
             Nessa seção, é possível conhecer os cursos ofertados pela
             Universidade de São Paulo sob a visão de seus alunos ou Centros
             Acadêmicos, desde o foco do aprendizado até mesmo porque aquela
@@ -36,7 +36,7 @@ const MainNavbar = () => {
         />
         <Card.Body>
           <Card.Title>Notas dos anos anteriores</Card.Title>
-          <Card.Text>
+          <Card.Text className="mb-4">
             Nessa seção, é possível encontrar os boletins de desempenho
             referentes à cada curso, com classificação do candidato no
             vestibular.
