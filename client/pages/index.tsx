@@ -45,9 +45,11 @@ export default function Index() {
           background-attachment: fixed;
         }
         .bloco-texto {
-          background-color: rgba(255, 255, 255, 0.8);
+          background-color: rgba(255, 255, 255, 1);
           padding: 20px;
-          border-radius: 20px 60px 20px 60px;
+          border-radius: 5px;
+          border-color: #6c757d !important;
+          border: 1px solid rgba(0, 0, 0, 0.125);
         }
         .logo-usp {
           align-self: center;
