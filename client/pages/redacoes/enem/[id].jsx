@@ -8,7 +8,7 @@ function RedacaoEnem({ redacao, url }) {
     <div>
       <MainNavbar />
       <Container>
-        <h1 className="text-center mt-2 mb-2">{redacao.ano}</h1>
+        <h2 className="text-center mt-2 mb-2">Ano: {redacao.ano}</h2>
         <img
           className="mx-auto d-block imagem-redacao"
           src={'https://api.manualdovestibulando.com.br' + url}
