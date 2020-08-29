@@ -9,24 +9,24 @@ const Curso = ({ data, curso, notas }) => {
   return (
     <Layout>
       <Row className="mt-4">
-        <Col md={12} xl={{span: 8, offset: 2}}>
+        <Col md={12} xl={{ span: 8, offset: 2 }}>
           <h1>
             {curso.nome} - {curso.instituto.sigla}
           </h1>
         </Col>
       </Row>
       <Row className="mt-2">
-        <Col md={12} xl={{span: 6, offset: 3}}>
+        <Col md={12} xl={{ span: 6, offset: 3 }}>
           <h2>Notas</h2>
         </Col>
       </Row>
       <Row>
-        <Col md={12} xl={{span: 6, offset: 3}}>
+        <Col md={12} xl={{ span: 6, offset: 3 }}>
           <NotasChart notas={curso.notas} allNotas={notas} />
         </Col>
       </Row>
       <Row className="my-3">
-        <Col md={12} xl={{span: 6, offset: 3}}>
+        <Col md={12} xl={{ span: 6, offset: 3 }}>
           <NotasTable notas={curso.notas} />
         </Col>
       </Row>
@@ -67,7 +67,11 @@ export const getStaticProps = async ({ params }) => {
   });
 
   const data = response.data.data;
-  const curso = data.cursos[0];
+  console.log(data);
+  let curso = { notas: [], instituto: { sigla: 'a' } };
+  if (data.cursos) {
+    curso = data.cursos[0];
+  }
 
   let notas = data.notas.filter((value) => value != null);
   curso.notas = curso.notas.filter((value) => value != null);
