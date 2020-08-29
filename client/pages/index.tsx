@@ -22,8 +22,8 @@ export default function Index() {
                 seus sonhos na melhor faculdade!
               </p>
             </Col>
-            <Col md lg="4">
-              <Image className="mt-3" src="logo_usp.png" fluid />
+            <Col md lg="4" className="d-flex">
+              <img className="mt-3 logo-usp" src="logo_usp.png" />
             </Col>
           </Row>
           <Row className="mt-4">
@@ -48,6 +48,11 @@ export default function Index() {
           background-color: rgba(255, 255, 255, 0.8);
           padding: 20px;
           border-radius: 20px 60px 20px 60px;
+        }
+        .logo-usp {
+          align-self: center;
+          max-width: 100%;
+          height: auto;
         }
       `}</style>
     </Layout>
