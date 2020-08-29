@@ -14,14 +14,14 @@ const MainNavbar = () => {
         />
         <Card.Body>
           <Card.Title>Descobrir cursos</Card.Title>
-          <Card.Text>
+          <Card.Text className="mb-4">
             Nessa seção, é possível conhecer os cursos ofertados pela
             Universidade de São Paulo sob a visão de seus alunos ou Centros
             Acadêmicos, desde o foco do aprendizado até mesmo porque aquela
             carreira é a dos seus sonhos.
           </Card.Text>
           <Link href="/notas">
-            <Button className="botao-card" variant="warning">
+            <Button className="botao-card texto-botao" variant="warning">
               Ir para cursos
             </Button>
           </Link>
@@ -36,13 +36,13 @@ const MainNavbar = () => {
         />
         <Card.Body>
           <Card.Title>Notas dos anos anteriores</Card.Title>
-          <Card.Text>
+          <Card.Text className="mb-4">
             Nessa seção, é possível encontrar os boletins de desempenho
             referentes à cada curso, com classificação do candidato no
             vestibular.
           </Card.Text>
           <Link href="/notas">
-            <Button className="botao-card" variant="warning">
+            <Button className="botao-card texto-botao" variant="warning">
               Ir para notas
             </Button>
           </Link>
@@ -64,7 +64,7 @@ const MainNavbar = () => {
             ampla sobre como a capacidade de argumentação é cobrada.
           </Card.Text>
           <Link href="/redacoes">
-            <Button className="botao-card" variant="warning">
+            <Button className="botao-card texto-botao" variant="warning">
               Ir para redações
             </Button>
           </Link>
@@ -82,6 +82,10 @@ const MainNavbar = () => {
         .botao-card:hover {
           border-color: #a6a6a6;
           background-color: #d97707;
+        }
+        .texto-botao {
+          font-weight: bold;
+          font-size: 18px;
         }
       `}</style>
     </CardDeck>

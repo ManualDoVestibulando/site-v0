@@ -7,12 +7,12 @@ const MainNavbar = () => {
     <React.Fragment>
       <Navbar expand="lg" className="barra-superior">
         <Link href="/">
-          <Navbar.Brand href="#home" className="m-0 p-0">
+          <Navbar.Brand href="#home" className="m-2 p-0">
             <img
-              src="logo_laranja_manual_fundobranco.svg"
-              width="110"
+              src="/logo_transparente.png"
+              width="140"
               className="d-inline-block align-top"
-              alt="Manual do Vestibulando"
+              alt="MDV"
             />
           </Navbar.Brand>
         </Link>
@@ -34,6 +34,11 @@ const MainNavbar = () => {
                 REDAÇÕES
               </Nav.Link>
             </Link>
+            <Link href="/depoimentos">
+              <Nav.Link href="#depoimentos" className="ml-lg-5 my-2 my-lg-0">
+                DEPOIMENTOS
+              </Nav.Link>
+            </Link>
             <Link href="/sobre">
               <Nav.Link href="#sobre" className="ml-lg-5 my-2 my-lg-0">
                 SOBRE
@@ -44,7 +49,7 @@ const MainNavbar = () => {
       </Navbar>
       <style jsx global>{`
         .barra-superior {
-          background-color: #ff8a00;
+          background-color: rgba(255, 138, 0, 1);
           font-weight: bold;
         }
       `}</style>

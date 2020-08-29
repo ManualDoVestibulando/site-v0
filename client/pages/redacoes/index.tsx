@@ -34,8 +34,12 @@ const Redacoes = () => {
         query,
       });
 
-      const data = res.data.data;
-      setRedacoes(data.redacaos);
+      const data = res.data.data.redacaos;
+      data.sort((item1, item2) => {
+        if (item1.ano != item2.ano) return item2.ano - item1.ano;
+        return item2.nota - item1.nota;
+      });
+      setRedacoes(data);
       setLoading(false);
     };
 
@@ -56,6 +60,10 @@ const Redacoes = () => {
       });
 
       const data = res.data.data.redacaoEnems;
+      data.sort((item1, item2) => {
+        if (item1.ano != item2.ano) return item2.ano - item1.ano;
+        return item2.nota_total - item1.nota_total;
+      });
       setRedacoesEnem(data);
       setLoadingEnem(false);
     };
@@ -81,32 +89,78 @@ const Redacoes = () => {
   );
 
   //Muda de pagina
-  const paginar = (numeroPagina) => setPaginaAtual(numeroPagina);
-  const paginarEnem = (numeroPaginaEnem) =>
-    setPaginaAtualEnem(numeroPaginaEnem);
+  const paginar = (numeroPagina) => {
+    if (numeroPagina < 1) {
+      return setPaginaAtual(1);
+    }
+    if (numeroPagina > Math.ceil(redacoes.length / redacoesPorPagina)) {
+      return setPaginaAtual(Math.ceil(redacoes.length / redacoesPorPagina));
+    }
+    setPaginaAtual(numeroPagina);
+  };
 
+  const paginarEnem = (numeroPaginaEnem) => {
+    if (numeroPaginaEnem < 1) {
+      return setPaginaAtualEnem(1);
+    }
+    if (
+      numeroPaginaEnem > Math.ceil(redacoesEnem.length / redacoesPorPaginaEnem)
+    ) {
+      return setPaginaAtualEnem(
+        Math.ceil(redacoesEnem.length / redacoesPorPaginaEnem)
+      );
+    }
+    setPaginaAtualEnem(numeroPaginaEnem);
+  };
   return (
     <Layout>
-      <Container className="mt-5">
-        <h2 className="text-center mb-3">Lista de Redações da Fuvest</h2>
-        <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
-        <Paginacao
-          itensPorPagina={redacoesPorPagina}
-          itensTotal={redacoes.length}
-          paginar={paginar}
-        />
-
-        <h2 className="text-center mb-3 mt-4">Lista de Redações do Enem</h2>
-        <ListaRedacoesEnem
-          redacoes={redacoesAtuaisEnem}
-          loading={loadingEnem}
-        />
-        <Paginacao
-          itensPorPagina={redacoesPorPaginaEnem}
-          itensTotal={redacoesEnem.length}
-          paginar={paginarEnem}
-        />
-      </Container>
+      <div className="fundo">
+        <div className="p-3"></div>
+        <Container>
+          <div className="bloco-red">
+            <h2 className="text-center mb-3">REDAÇÕES DA FUVEST</h2>
+            <ListaRedacoes redacoes={redacoesAtuais} loading={loading} />
+            <Paginacao
+              itensPorPagina={redacoesPorPagina}
+              itensTotal={redacoes.length}
+              paginar={paginar}
+              pagAtual={paginaAtual}
+            />
+          </div>
+          <div className="p-3"></div>
+          <div className="bloco-red">
+            <h2 className="text-center mb-3 mt-4">REDAÇÕES DO ENEM</h2>
+            <ListaRedacoesEnem
+              redacoes={redacoesAtuaisEnem}
+              loading={loadingEnem}
+            />
+            <Paginacao
+              itensPorPagina={redacoesPorPaginaEnem}
+              itensTotal={redacoesEnem.length}
+              paginar={paginarEnem}
+              pagAtual={paginaAtualEnem}
+            />
+          </div>
+          <div className="p-3"></div>
+        </Container>
+      </div>
+      <style jsx>
+        {`
+          .fundo {
+            background-image: url('fundo_vermelho.jpg');
+            min-height: 100vh;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+          }
+          .bloco-red {
+            background-color: rgba(255, 255, 255, 0.14);
+            padding: 20px;
+            border-radius: 40px;
+          }
+        `}
+      </style>
     </Layout>
   );
 };
