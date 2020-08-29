@@ -65,6 +65,7 @@ const Depoimentos = () => {
               itensPorPagina={depoimentosPorPagina}
               itensTotal={depoimentos.length}
               paginar={paginar}
+              pagAtual={paginaAtual}
             />
           </div>
           <div className="p-3"></div>
@@ -81,7 +82,7 @@ const Depoimentos = () => {
             background-attachment: fixed;
           }
           .bloco-red {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.14);
             padding: 20px;
             border-radius: 40px;
           }

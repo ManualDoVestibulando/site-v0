@@ -89,10 +89,29 @@ const Redacoes = () => {
   );
 
   //Muda de pagina
-  const paginar = (numeroPagina) => setPaginaAtual(numeroPagina);
-  const paginarEnem = (numeroPaginaEnem) =>
-    setPaginaAtualEnem(numeroPaginaEnem);
+  const paginar = (numeroPagina) => {
+    if (numeroPagina < 1) {
+      return setPaginaAtual(1);
+    }
+    if (numeroPagina > Math.ceil(redacoes.length / redacoesPorPagina)) {
+      return setPaginaAtual(Math.ceil(redacoes.length / redacoesPorPagina));
+    }
+    setPaginaAtual(numeroPagina);
+  };
 
+  const paginarEnem = (numeroPaginaEnem) => {
+    if (numeroPaginaEnem < 1) {
+      return setPaginaAtualEnem(1);
+    }
+    if (
+      numeroPaginaEnem > Math.ceil(redacoesEnem.length / redacoesPorPaginaEnem)
+    ) {
+      return setPaginaAtualEnem(
+        Math.ceil(redacoesEnem.length / redacoesPorPaginaEnem)
+      );
+    }
+    setPaginaAtualEnem(numeroPaginaEnem);
+  };
   return (
     <Layout>
       <div className="fundo">
@@ -105,6 +124,7 @@ const Redacoes = () => {
               itensPorPagina={redacoesPorPagina}
               itensTotal={redacoes.length}
               paginar={paginar}
+              pagAtual={paginaAtual}
             />
           </div>
           <div className="p-3"></div>
@@ -118,6 +138,7 @@ const Redacoes = () => {
               itensPorPagina={redacoesPorPaginaEnem}
               itensTotal={redacoesEnem.length}
               paginar={paginarEnem}
+              pagAtual={paginaAtualEnem}
             />
           </div>
           <div className="p-3"></div>
@@ -134,7 +155,7 @@ const Redacoes = () => {
             background-attachment: fixed;
           }
           .bloco-red {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.14);
             padding: 20px;
             border-radius: 40px;
           }
