@@ -36,8 +36,8 @@ const Curso = ({ data, curso, notas }) => {
 
 export const getStaticProps = async ({ params }) => {
   const query = `
-    query Querry($instituto: String!, $curso: String!) {
-      cursos(where: { slug_: $curso, instituto: {slug_: $instituto} }) {
+    query Querry($curso: String!) {
+      cursos(where: { slug_: $curso}) {
         nome
         instituto {
           sigla
@@ -61,7 +61,6 @@ export const getStaticProps = async ({ params }) => {
   const response = await axios.post('/graphql', {
     query,
     variables: {
-      instituto: params.instituto,
       curso: params.curso,
     },
   });
