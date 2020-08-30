@@ -3,7 +3,7 @@ import NotasChart from '../../../../components/NotasChart';
 import NotasTable from '../../../../components/NotasTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 
 const Curso = ({ data, curso, notas }) => {
   return (
@@ -15,9 +15,25 @@ const Curso = ({ data, curso, notas }) => {
           </h1>
         </Col>
       </Row>
+      <Row className="mt-2 mb-4">
+        <Col xs={12} className="d-flex justify-content-center">
+          {curso.texto ? (
+            <Button
+              size="lg"
+              onClick={() => {
+                location.href = curso.texto;
+              }}
+            >
+              Acessar Texto
+            </Button>
+          ) : null}
+        </Col>
+      </Row>
       <Row className="mt-2 mb-3">
         <Col md={12} xl={{ span: 6, offset: 3 }}>
-          <h2 className="text-center">Notas</h2>
+          <h1 className="text-center">
+            <b>Notas</b>
+          </h1>
         </Col>
       </Row>
       <div>
@@ -51,6 +67,7 @@ export const getStaticProps = async ({ params }) => {
           redacao
           classificacao
         }
+        texto
       }
       notas{
         fase1
