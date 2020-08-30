@@ -24,7 +24,7 @@ const Curso = ({ data, curso, notas }) => {
                 location.href = curso.texto;
               }}
             >
-              Acessar Texto
+              Acessar Texto Sobre o Curso
             </Button>
           ) : null}
         </Col>
