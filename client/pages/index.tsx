@@ -37,7 +37,7 @@ export default function Index() {
           line-height: 160%;
         }
         .fundo {
-          background-image: url('fundo_azul.jpg');
+          background-image: url('fundo_branco.png');
           min-height: 100vh;
           height: 100%;
           background-position: center;

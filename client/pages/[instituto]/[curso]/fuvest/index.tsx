@@ -10,26 +10,28 @@ const Curso = ({ data, curso, notas }) => {
     <Layout>
       <Row className="mt-4">
         <Col md={12} xl={{ span: 8, offset: 2 }}>
-          <h1>
+          <h1 className="text-center">
             {curso.nome} - {curso.instituto.sigla}
           </h1>
         </Col>
       </Row>
-      <Row className="mt-2">
+      <Row className="mt-2 mb-3">
         <Col md={12} xl={{ span: 6, offset: 3 }}>
-          <h2>Notas</h2>
+          <h2 className="text-center">Notas</h2>
         </Col>
       </Row>
-      <Row>
-        <Col md={12} xl={{ span: 6, offset: 3 }}>
-          <NotasChart notas={curso.notas} allNotas={notas} />
-        </Col>
-      </Row>
-      <Row className="my-3">
-        <Col md={12} xl={{ span: 6, offset: 3 }}>
-          <NotasTable notas={curso.notas} />
-        </Col>
-      </Row>
+      <div>
+        <Row>
+          <Col md={12} xl={{ span: 6, offset: 3 }}>
+            <NotasChart notas={curso.notas} allNotas={notas} />
+          </Col>
+        </Row>
+        <Row className="my-3">
+          <Col md={12} xl={{ span: 6, offset: 3 }}>
+            <NotasTable notas={curso.notas} />
+          </Col>
+        </Row>
+      </div>
     </Layout>
   );
 };
@@ -66,8 +68,7 @@ export const getStaticProps = async ({ params }) => {
   });
 
   const data = response.data.data;
-  console.log(data);
-  let curso = { notas: [], instituto: { sigla: 'a' } };
+  let curso = { notas: [], instituto: { sigla: 'ERRO' } };
   if (data.cursos) {
     curso = data.cursos[0];
   }
