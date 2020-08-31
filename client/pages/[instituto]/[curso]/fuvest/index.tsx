@@ -39,7 +39,7 @@ const Curso = ({ data, curso, notas }) => {
       <div>
         <Row>
           <Col md={12} xl={{ span: 6, offset: 3 }}>
-            <NotasChart notas={curso.notas} allNotas={notas} />
+            <NotasChart notas={curso.notas} />
           </Col>
         </Row>
         <Row className="my-3">
