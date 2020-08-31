@@ -3,53 +3,51 @@ import NotasChart from '../../../../components/NotasChart';
 import NotasTable from '../../../../components/NotasTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';
-import { Col, Row, Button, Container } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 
 const Curso = ({ data, curso, notas }) => {
   return (
     <Layout>
-      <Container>
-        <Row className="mt-4">
-          <Col md={12} xl={{ span: 8, offset: 2 }}>
-            <h1 className="text-center">
-              {curso.nome} - {curso.instituto.sigla}
-            </h1>
-          </Col>
-        </Row>
-        <Row className="mt-2 mb-4">
-          <Col xs={12} className="d-flex justify-content-center">
-            {curso.texto ? (
-              <Button
-                size="lg"
-                onClick={() => {
-                  location.href = curso.texto;
-                }}
-              >
-                Acessar Texto Sobre o Curso
-              </Button>
-            ) : null}
-          </Col>
-        </Row>
-        <Row className="mt-2 mb-3">
+      <Row className="mt-4">
+        <Col md={12} xl={{ span: 8, offset: 2 }}>
+          <h1 className="text-center">
+            {curso.nome} - {curso.instituto.sigla}
+          </h1>
+        </Col>
+      </Row>
+      <Row className="mt-2 mb-4">
+        <Col xs={12} className="d-flex justify-content-center">
+          {curso.texto ? (
+            <Button
+              size="lg"
+              onClick={() => {
+                location.href = curso.texto;
+              }}
+            >
+              Acessar Texto Sobre o Curso
+            </Button>
+          ) : null}
+        </Col>
+      </Row>
+      <Row className="mt-2 mb-3">
+        <Col md={12} xl={{ span: 6, offset: 3 }}>
+          <h1 className="text-center">
+            <b>Notas</b>
+          </h1>
+        </Col>
+      </Row>
+      <div>
+        <Row>
           <Col md={12} xl={{ span: 6, offset: 3 }}>
-            <h1 className="text-center">
-              <b>Notas</b>
-            </h1>
+            <NotasChart notas={curso.notas} allNotas={notas} />
           </Col>
         </Row>
-        <div>
-          <Row>
-            <Col md={12} xl={{ span: 6, offset: 3 }}>
-              <NotasChart notas={curso.notas} allNotas={notas} />
-            </Col>
-          </Row>
-          <Row className="my-3">
-            <Col md={12} xl={{ span: 6, offset: 3 }}>
-              <NotasTable notas={curso.notas} />
-            </Col>
-          </Row>
-        </div>
-      </Container>
+        <Row className="my-3">
+          <Col md={12} xl={{ span: 6, offset: 3 }}>
+            <NotasTable notas={curso.notas} />
+          </Col>
+        </Row>
+      </div>
     </Layout>
   );
 };
