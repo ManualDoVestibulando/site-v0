@@ -14,28 +14,7 @@ export default function Sobre({ sobre, equipes }) {
         className="justify-content-md-center"
         dangerouslySetInnerHTML={{ __html: htmlDescricao }}
       />
-      <S.WrapperTimes>
-        <h1>Colaboradores</h1>
-        {equipes.map((equipe) => (
-          <>
-            <h2>{equipe.nome}</h2>
-            <S.Equipes>
-              {equipe.colaboradores.map((colaborador) => (
-                <S.Colaborador>
-                  <img
-                    loading="lazy"
-                    src={
-                      'https://api.manualdovestibulando.com.br' +
-                      colaborador.imagem.url
-                    }
-                  />
-                  <h4>{colaborador.nome}</h4>
-                </S.Colaborador>
-              ))}
-            </S.Equipes>
-          </>
-        ))}
-      </S.WrapperTimes>
+
       <div className="text-center credito-icones">
         Icons made by{' '}
         <a href="https://www.flaticon.com/authors/surang" title="surang">
