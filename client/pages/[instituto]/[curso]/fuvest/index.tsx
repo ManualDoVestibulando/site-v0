@@ -3,41 +3,59 @@ import NotasChart from '../../../../components/NotasChart';
 import NotasTable from '../../../../components/NotasTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 
 const Curso = ({ data, curso, notas }) => {
   return (
     <Layout>
       <Row className="mt-4">
-        <Col md={12} xl={{span: 8, offset: 2}}>
-          <h1>
+        <Col md={12} xl={{ span: 8, offset: 2 }}>
+          <h1 className="text-center">
             {curso.nome} - {curso.instituto.sigla}
           </h1>
         </Col>
       </Row>
-      <Row className="mt-2">
-        <Col md={12} xl={{span: 6, offset: 3}}>
-          <h2>Notas</h2>
+      <Row className="mt-2 mb-4">
+        <Col xs={12} className="d-flex justify-content-center">
+          {curso.texto ? (
+            <Button
+              size="lg"
+              onClick={() => {
+                location.href = curso.texto;
+              }}
+            >
+              Acessar Texto Sobre o Curso
+            </Button>
+          ) : null}
         </Col>
       </Row>
-      <Row>
-        <Col md={12} xl={{span: 6, offset: 3}}>
-          <NotasChart notas={curso.notas} allNotas={notas} />
+      <Row className="mt-2 mb-3">
+        <Col md={12} xl={{ span: 6, offset: 3 }}>
+          <h1 className="text-center">
+            <b>Notas</b>
+          </h1>
         </Col>
       </Row>
-      <Row className="my-3">
-        <Col md={12} xl={{span: 6, offset: 3}}>
-          <NotasTable notas={curso.notas} />
-        </Col>
-      </Row>
+      <div>
+        <Row>
+          <Col md={12} xl={{ span: 6, offset: 3 }}>
+            <NotasChart notas={curso.notas} allNotas={notas} />
+          </Col>
+        </Row>
+        <Row className="my-3">
+          <Col md={12} xl={{ span: 6, offset: 3 }}>
+            <NotasTable notas={curso.notas} />
+          </Col>
+        </Row>
+      </div>
     </Layout>
   );
 };
 
 export const getStaticProps = async ({ params }) => {
   const query = `
-    query Querry($instituto: String!, $curso: String!) {
-      cursos(where: { slug_: $curso, instituto: {slug_: $instituto} }) {
+    query Querry($curso: String!) {
+      cursos(where: { slug_: $curso}) {
         nome
         instituto {
           sigla
@@ -48,7 +66,9 @@ export const getStaticProps = async ({ params }) => {
           fase2dia2
           redacao
           classificacao
+          cota
         }
+        texto
       }
       notas{
         fase1
@@ -61,13 +81,15 @@ export const getStaticProps = async ({ params }) => {
   const response = await axios.post('/graphql', {
     query,
     variables: {
-      instituto: params.instituto,
       curso: params.curso,
     },
   });
 
   const data = response.data.data;
-  const curso = data.cursos[0];
+  let curso = { notas: [], instituto: { sigla: 'ERRO' } };
+  if (data.cursos) {
+    curso = data.cursos[0];
+  }
 
   let notas = data.notas.filter((value) => value != null);
   curso.notas = curso.notas.filter((value) => value != null);
