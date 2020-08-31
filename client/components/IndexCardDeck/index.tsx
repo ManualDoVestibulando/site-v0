@@ -87,6 +87,9 @@ const MainNavbar = () => {
           font-weight: bold;
           font-size: 18px;
         }
+        #card1 {
+          background-color: red;
+        }
       `}</style>
     </CardDeck>
   );
