@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notas_enems",
+  "info": {
+    "name": "Notas-enem"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "linguagens": {
+      "type": "decimal"
+    },
+    "ciencias_natureza": {
+      "type": "decimal"
+    },
+    "ciencias_humanas": {
+      "type": "decimal"
+    },
+    "redacao": {
+      "type": "decimal"
+    },
+    "Media": {
+      "type": "decimal"
+    },
+    "cota": {
+      "type": "enumeration",
+      "enum": [
+        "AC",
+        "EP",
+        "PPI"
+      ]
+    },
+    "curso": {
+      "via": "notas_enems",
+      "model": "curso"
+    },
+    "matematica": {
+      "type": "decimal"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/depoimentos",
+      "handler": "depoimentos.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/depoimentos/count",
+      "handler": "depoimentos.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/depoimentos/:id",
+      "handler": "depoimentos.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/depoimentos",
+      "handler": "depoimentos.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/depoimentos/:id",
+      "handler": "depoimentos.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/depoimentos/:id",
+      "handler": "depoimentos.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

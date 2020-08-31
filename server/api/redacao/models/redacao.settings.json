@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "redacaos",
+  "info": {
+    "name": "Redacao"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "foto": {
+      "type": "string"
+    },
+    "ano": {
+      "type": "integer"
+    },
+    "nota": {
+      "type": "decimal"
+    },
+    "titulo": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "redacao_enems",
+  "info": {
+    "name": "Redacao-enem"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "competencia_1": {
+      "type": "integer"
+    },
+    "competencia_2": {
+      "type": "integer"
+    },
+    "competencia_3": {
+      "type": "integer"
+    },
+    "competencia_4": {
+      "type": "integer"
+    },
+    "competencia_5": {
+      "type": "integer"
+    },
+    "ano": {
+      "type": "integer"
+    },
+    "foto": {
+      "type": "string"
+    },
+    "nota_total": {
+      "type": "integer"
+    }
+  }
+}

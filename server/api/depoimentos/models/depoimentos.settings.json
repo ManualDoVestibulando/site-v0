@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "depoimentos",
+  "info": {
+    "name": "depoimentos"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

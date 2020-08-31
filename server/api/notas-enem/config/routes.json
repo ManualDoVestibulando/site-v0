@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/notas-enems",
+      "handler": "notas-enem.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/notas-enems/count",
+      "handler": "notas-enem.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/notas-enems/:id",
+      "handler": "notas-enem.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/notas-enems",
+      "handler": "notas-enem.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/notas-enems/:id",
+      "handler": "notas-enem.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/notas-enems/:id",
+      "handler": "notas-enem.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

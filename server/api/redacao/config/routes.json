@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/redacaos",
+      "handler": "redacao.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/redacaos/count",
+      "handler": "redacao.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/redacaos/:id",
+      "handler": "redacao.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/redacaos",
+      "handler": "redacao.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/redacaos/:id",
+      "handler": "redacao.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/redacaos/:id",
+      "handler": "redacao.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

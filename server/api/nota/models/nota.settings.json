@@ -35,7 +35,7 @@
     },
     "classificacao": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "cota": {
       "type": "enumeration",

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/redacao-enems",
+      "handler": "redacao-enem.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/redacao-enems/count",
+      "handler": "redacao-enem.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/redacao-enems/:id",
+      "handler": "redacao-enem.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/redacao-enems",
+      "handler": "redacao-enem.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/redacao-enems/:id",
+      "handler": "redacao-enem.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/redacao-enems/:id",
+      "handler": "redacao-enem.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
