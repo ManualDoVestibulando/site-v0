@@ -105,6 +105,10 @@ export const getStaticProps = async ({ params }) => {
       3;
   });
 
+  curso.notas.sort((a, b) => {
+    return b.total - a.total;
+  });
+
   curso.notas.forEach((nota) =>
     Object.keys(nota).forEach((key) => {
       try {
