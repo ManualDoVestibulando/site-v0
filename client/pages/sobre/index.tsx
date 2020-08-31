@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Container } from 'react-bootstrap';
 import * as S from '../../styles/sobre-style';
 import axios from '../../lib/axios';
 import showdown from 'showdown';
@@ -36,6 +36,21 @@ export default function Sobre({ sobre, equipes }) {
           </>
         ))}
       </S.WrapperTimes>
+      <div className="text-center credito-icones">
+        Icons made by{' '}
+        <a href="https://www.flaticon.com/authors/surang" title="surang">
+          surang
+        </a>{' '}
+        from{' '}
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          www.flaticon.com
+        </a>
+      </div>
+      <style jsx>{`
+        .credito-icones {
+          background-color: #556270;
+        }
+      `}</style>
     </Layout>
   );
 }
