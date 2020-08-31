@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WrapperText = styled.section`
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -19,7 +19,7 @@ export const WrapperText = styled.section`
 
 export const WrapperTimes = styled.section`
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
