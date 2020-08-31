@@ -3,6 +3,17 @@ import { arrAvg } from '../../utils/array';
 
 export const notasHeaders = () => [
   {
+    Header: 'Modalidade',
+    accessor: 'cota', // accessor is the "key" in the data
+    Footer: (
+      <>
+        <div>*</div>
+        <div>*</div>
+        <div>*</div>
+      </>
+    ),
+  },
+  {
     Header: 'Posição',
     accessor: 'classificacao', // accessor is the "key" in the data
     Footer: (

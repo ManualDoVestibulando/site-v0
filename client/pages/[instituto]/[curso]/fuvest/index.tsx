@@ -66,6 +66,7 @@ export const getStaticProps = async ({ params }) => {
           fase2dia2
           redacao
           classificacao
+          cota
         }
         texto
       }
