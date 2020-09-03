@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"38e0d25e0fb44c748c888c7ff1d3a435","collectionName":"strapi_permission"}
