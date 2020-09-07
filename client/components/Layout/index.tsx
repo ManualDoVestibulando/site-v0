@@ -6,7 +6,6 @@ import MainNavbar from '../MainNavbar';
 const Layout = ({ children }) => (
   <>
     <Head>
-      <title>Notas USP</title>
       <link rel="icon" href="/favicon.png" />
     </Head>
     <header>
