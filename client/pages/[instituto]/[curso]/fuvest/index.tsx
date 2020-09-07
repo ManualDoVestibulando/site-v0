@@ -21,7 +21,7 @@ const Curso = ({ data, curso, notas }) => {
       'desempenho referentes à cada curso, com classificação do candidato no vestibular.',
 
     openGraph: {
-      title: 'Depoimentos - Manual do Vestibulando',
+      title: `MDV | ${curso.nome} - ${curso.instituto.sigla}`,
       description:
         `Notas e informações sobre o curso ${curso.nome} - ${curso.instituto.sigla} ` +
         'O Manual do Vestibulando surge da inquietação de diversas estudantes calouros durante seus anos de vestibulandas com ' +
