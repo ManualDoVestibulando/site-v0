@@ -21,21 +21,10 @@ const Redacoes = () => {
   useEffect(() => {
     const fetchRedacoes = async () => {
       setLoading(true);
-      const query = `
-        query Querry {
-          redacaos {
-            id
-            nota
-            ano
-          }
-        }
-      `;
 
-      const res = await axios.post('/graphql', {
-        query,
-      });
+      const res = await axios.get('/redacaos?_limit=1000');
 
-      const data = res.data.data.redacaos;
+      const data = res.data;
       data.sort((item1, item2) => {
         if (item1.ano != item2.ano) return item2.ano - item1.ano;
         return item2.nota - item1.nota;
@@ -46,21 +35,10 @@ const Redacoes = () => {
 
     const fetchRedacoesEnem = async () => {
       setLoadingEnem(true);
-      const query = `
-        query Querry {
-          redacaoEnems {
-            id
-            nota_total
-            ano
-          }
-        }
-      `;
 
-      const res = await axios.post('/graphql', {
-        query,
-      });
+      const res = await axios.get('/redacao-enems?_limit=1000');
 
-      const data = res.data.data.redacaoEnems;
+      const data = res.data;
       data.sort((item1, item2) => {
         if (item1.ano != item2.ano) return item2.ano - item1.ano;
         return item2.nota_total - item1.nota_total;
