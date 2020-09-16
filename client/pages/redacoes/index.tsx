@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import ListaRedacoes from '../../components/ListaRedacoes';
 import ListaRedacoesEnem from '../../components/ListaRedacoesEnem';
 import Paginacao from '../../components/Paginacao';
+import { NextSeo } from 'next-seo';
 
 const Redacoes = () => {
   const [redacoes, setRedacoes] = useState([]);
@@ -20,21 +21,10 @@ const Redacoes = () => {
   useEffect(() => {
     const fetchRedacoes = async () => {
       setLoading(true);
-      const query = `
-        query Querry {
-          redacaos {
-            id
-            nota
-            ano
-          }
-        }
-      `;
 
-      const res = await axios.post('/graphql', {
-        query,
-      });
+      const res = await axios.get('/redacaos?_limit=1000');
 
-      const data = res.data.data.redacaos;
+      const data = res.data;
       data.sort((item1, item2) => {
         if (item1.ano != item2.ano) return item2.ano - item1.ano;
         return item2.nota - item1.nota;
@@ -45,21 +35,10 @@ const Redacoes = () => {
 
     const fetchRedacoesEnem = async () => {
       setLoadingEnem(true);
-      const query = `
-        query Querry {
-          redacaoEnems {
-            id
-            nota_total
-            ano
-          }
-        }
-      `;
 
-      const res = await axios.post('/graphql', {
-        query,
-      });
+      const res = await axios.get('/redacao-enems?_limit=1000');
 
-      const data = res.data.data.redacaoEnems;
+      const data = res.data;
       data.sort((item1, item2) => {
         if (item1.ano != item2.ano) return item2.ano - item1.ano;
         return item2.nota_total - item1.nota_total;
@@ -112,8 +91,34 @@ const Redacoes = () => {
     }
     setPaginaAtualEnem(numeroPaginaEnem);
   };
+
+  const SEO = {
+    title: 'Redações - Manual do Vestibulando',
+    description:
+      'O Manual do Vestibulando surge da inquietação de diversas estudantes calouros durante seus anos de vestibulandas com ' +
+      'a falta de informações sobre como alcançar uma vaga na Universidade de São Paulo. Em um processo tão pouco transparente, aliados ' +
+      'aos Centros Acadêmicos (com destaque especial aos centrinhos politécnicos), os estudantes, em iniciativa própria, reuniram a métrica ' +
+      'de desempenho dos vestibulares de ingresso (Fuvest e Enem), bem como redações e depoimentos diversos, para democratizar o acesso ' +
+      'a esse tipo de informação. ' +
+      'Nessa seção, é possível explorar redações dos vestibulares de ingresso, com a variedade de notas, estilos de escrita e argumentações' +
+      'de diversos candidatos, proporcionando uma visão mais ampla sobre como a capacidade de argumentação é cobrada.',
+
+    openGraph: {
+      title: 'Redações - Manual do Vestibulando',
+      description:
+        'O Manual do Vestibulando surge da inquietação de diversas estudantes calouros durante seus anos de vestibulandas com ' +
+        'a falta de informações sobre como alcançar uma vaga na Universidade de São Paulo. Em um processo tão pouco transparente, aliados ' +
+        'aos Centros Acadêmicos (com destaque especial aos centrinhos politécnicos), os estudantes, em iniciativa própria, reuniram a métrica ' +
+        'de desempenho dos vestibulares de ingresso (Fuvest e Enem), bem como redações e depoimentos diversos, para democratizar o acesso ' +
+        'a esse tipo de informação. ' +
+        'Nessa seção, é possível explorar redações dos vestibulares de ingresso, com a variedade de notas, estilos de escrita e argumentações' +
+        'de diversos candidatos, proporcionando uma visão mais ampla sobre como a capacidade de argumentação é cobrada.',
+    },
+  };
+
   return (
     <Layout>
+      <NextSeo {...SEO} />
       <div className="fundo">
         <div className="p-3"></div>
         <Container>

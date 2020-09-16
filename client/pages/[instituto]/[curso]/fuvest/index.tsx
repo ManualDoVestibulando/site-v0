@@ -4,10 +4,40 @@ import NotasTable from '../../../../components/NotasTable';
 import Layout from '../../../../components/Layout';
 import axios from '../../../../lib/axios';
 import { Col, Row, Button } from 'react-bootstrap';
+import { NextSeo } from 'next-seo';
 
 const Curso = ({ data, curso, notas }) => {
+  const SEO = {
+    title: `MDV | ${curso.nome} - ${curso.instituto.sigla}`,
+    description:
+      `Notas e informações sobre o curso ${curso.nome} - ${curso.instituto.sigla} ` +
+      'O Manual do Vestibulando surge da inquietação de diversas estudantes calouros durante seus anos de vestibulandas com ' +
+      'a falta de informações sobre como alcançar uma vaga na Universidade de São Paulo. Em um processo tão pouco transparente, aliados ' +
+      'aos Centros Acadêmicos (com destaque especial aos centrinhos politécnicos), os estudantes, em iniciativa própria, reuniram a métrica ' +
+      'de desempenho dos vestibulares de ingresso (Fuvest e Enem), bem como redações e depoimentos diversos, para democratizar o acesso ' +
+      'a esse tipo de informação. ' +
+      'Nessa seção, é possível conhecer os cursos ofertados pela Universidade de São Paulo sob a visão de seus alunos ou Centros Acadêmicos, ' +
+      'desde o foco do aprendizado até mesmo porque aquela carreira é a dos seus sonhos. Também é possível encontrar os boletins de ' +
+      'desempenho referentes à cada curso, com classificação do candidato no vestibular.',
+
+    openGraph: {
+      title: `MDV | ${curso.nome} - ${curso.instituto.sigla}`,
+      description:
+        `Notas e informações sobre o curso ${curso.nome} - ${curso.instituto.sigla} ` +
+        'O Manual do Vestibulando surge da inquietação de diversas estudantes calouros durante seus anos de vestibulandas com ' +
+        'a falta de informações sobre como alcançar uma vaga na Universidade de São Paulo. Em um processo tão pouco transparente, aliados ' +
+        'aos Centros Acadêmicos (com destaque especial aos centrinhos politécnicos), os estudantes, em iniciativa própria, reuniram a métrica ' +
+        'de desempenho dos vestibulares de ingresso (Fuvest e Enem), bem como redações e depoimentos diversos, para democratizar o acesso ' +
+        'a esse tipo de informação. ' +
+        'Nessa seção, é possível conhecer os cursos ofertados pela Universidade de São Paulo sob a visão de seus alunos ou Centros Acadêmicos, ' +
+        'desde o foco do aprendizado até mesmo porque aquela carreira é a dos seus sonhos. Também é possível encontrar os boletins de ' +
+        'desempenho referentes à cada curso, com classificação do candidato no vestibular.',
+    },
+  };
+
   return (
     <Layout>
+      <NextSeo {...SEO} />
       <Row className="mt-4">
         <Col md={12} xl={{ span: 8, offset: 2 }}>
           <h1 className="text-center">

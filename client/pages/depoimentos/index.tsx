@@ -6,6 +6,7 @@ import ListaRedacoes from '../../components/ListaRedacoes';
 import ListaRedacoesEnem from '../../components/ListaRedacoesEnem';
 import Paginacao from '../../components/Paginacao';
 import ListaDepoimentos from '../../components/ListaDepoimentos';
+import { NextSeo } from 'next-seo';
 
 const Depoimentos = () => {
   const [depoimentos, setDepoimentos] = useState([]);
@@ -50,8 +51,29 @@ const Depoimentos = () => {
   //Muda de pagina
   const paginar = (numeroPagina) => setPaginaAtual(numeroPagina);
 
+  const SEO = {
+    title: 'Depoimentos - Manual do Vestibulando',
+    description:
+      'O Manual do Vestibulando surge da inquietação de diversas estudantes calouros durante seus anos de vestibulandas com ' +
+      'a falta de informações sobre como alcançar uma vaga na Universidade de São Paulo. Em um processo tão pouco transparente, aliados ' +
+      'aos Centros Acadêmicos (com destaque especial aos centrinhos politécnicos), os estudantes, em iniciativa própria, reuniram a métrica ' +
+      'de desempenho dos vestibulares de ingresso (Fuvest e Enem), bem como redações e depoimentos diversos, para democratizar o acesso ' +
+      'a esse tipo de informação. ',
+
+    openGraph: {
+      title: 'Depoimentos - Manual do Vestibulando',
+      description:
+        'O Manual do Vestibulando surge da inquietação de diversas estudantes calouros durante seus anos de vestibulandas com ' +
+        'a falta de informações sobre como alcançar uma vaga na Universidade de São Paulo. Em um processo tão pouco transparente, aliados ' +
+        'aos Centros Acadêmicos (com destaque especial aos centrinhos politécnicos), os estudantes, em iniciativa própria, reuniram a métrica ' +
+        'de desempenho dos vestibulares de ingresso (Fuvest e Enem), bem como redações e depoimentos diversos, para democratizar o acesso ' +
+        'a esse tipo de informação. ',
+    },
+  };
+
   return (
     <Layout>
+      <NextSeo {...SEO} />
       <div className="fundo">
         <div className="p-3"></div>
         <Container>
