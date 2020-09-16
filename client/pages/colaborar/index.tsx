@@ -16,7 +16,7 @@ export default function Colaborar() {
     <Layout>
       <NextSeo {...SEO} />
       <div className="fundo">
-        <Container className="">
+        <Container>
           <Row className="mt-2">
             <Col xs="12" className="d-flex justify-content-center">
               <img className="mt-3 logo-usp" src="enviar.png" />
@@ -37,6 +37,7 @@ export default function Colaborar() {
               <Button
                 size="lg"
                 className="mb-auto"
+                variant="primary"
                 onClick={() => {
                   location.href = 'https://forms.gle/RN7GvUAnQM9S2mzW8';
                 }}

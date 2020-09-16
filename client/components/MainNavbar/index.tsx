@@ -5,7 +5,7 @@ import Link from 'next/link';
 const MainNavbar = () => {
   return (
     <React.Fragment>
-      <Navbar expand="lg" className="barra-superior">
+      <Navbar expand="lg" className="barra-superior" fixed="top">
         <Link href="/">
           <Navbar.Brand href="#home" className="m-2 p-0">
             <img

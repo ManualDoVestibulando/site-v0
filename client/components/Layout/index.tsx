@@ -11,7 +11,15 @@ const Layout = ({ children }) => (
     <header>
       <MainNavbar />
     </header>
-    <main>{children}</main>
+    <main>
+      <div className="spacing"></div>
+      {children}
+    </main>
+    <style jsx>{`
+      .spacing {
+        padding: 35px;
+      }
+    `}</style>
   </>
 );
 
