@@ -6,13 +6,20 @@ import MainNavbar from '../MainNavbar';
 const Layout = ({ children }) => (
   <>
     <Head>
-      <title>Notas USP</title>
       <link rel="icon" href="/favicon.png" />
     </Head>
     <header>
       <MainNavbar />
     </header>
-    <main>{children}</main>
+    <main>
+      <div className="spacing"></div>
+      {children}
+    </main>
+    <style jsx>{`
+      .spacing {
+        padding: 35px;
+      }
+    `}</style>
   </>
 );
 

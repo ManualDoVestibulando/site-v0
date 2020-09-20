@@ -1,5 +1,4 @@
 import React from 'react';
-import MainNavbar from '../components/MainNavbar';
 import IndexCardDeck from '../components/IndexCardDeck';
 import Layout from '../components/Layout';
 import { Container, Row, Col, Image } from 'react-bootstrap';
