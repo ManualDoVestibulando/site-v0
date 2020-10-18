@@ -24,8 +24,8 @@
       "type": "string"
     },
     "notas_enems": {
-      "collection": "notas-enem",
-      "via": "curso"
+      "via": "curso",
+      "collection": "notas-enem"
     },
     "texto": {
       "type": "string"

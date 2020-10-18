@@ -45,6 +45,10 @@
         "PPI"
       ],
       "required": true
+    },
+    "ano": {
+      "type": "integer",
+      "default": 2020
     }
   }
 }

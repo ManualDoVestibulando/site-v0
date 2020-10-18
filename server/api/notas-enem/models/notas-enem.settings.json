@@ -33,11 +33,15 @@
       ]
     },
     "curso": {
-      "via": "notas_enems",
-      "model": "curso"
+      "model": "curso",
+      "via": "notas_enems"
     },
     "matematica": {
       "type": "decimal"
+    },
+    "ano": {
+      "type": "integer",
+      "default": 2020
     }
   }
 }
